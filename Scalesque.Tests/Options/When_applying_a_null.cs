@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Scalesque.Optional
+namespace Scalesque.Options
 {
     public class When_applying_a_null : UnitTestBase
     {
