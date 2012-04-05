@@ -1,0 +1,13 @@
+bin/
+obj/
+*.user
+*.suo
+*.sqlsuo
+Debug/
+Release/
+*.pdb
+test.*
+_ReSharper*.*
+*.scc
+*.vssscc
+*.vspscc
