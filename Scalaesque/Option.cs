@@ -6,33 +6,33 @@ using System.Linq;
 namespace Scalesque {
 
     /// <summary>
-    /// Represents an optional value.  Is either a Some<T> or a None<T> representing value present or missing respectively.
+    /// Represents an optional value.  Is either a Some{T} or a None{T} representing value present or missing respectively.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public abstract partial class Option<T> : IEnumerable<T> {
         
-        public abstract bool isEmpty { get; }
+        public abstract bool IsEmpty { get; }
         
-        public bool hasValue { get { return !isEmpty; } }
+        public bool HasValue { get { return !IsEmpty; } }
 
-        public abstract T get();
+        public abstract T Get();
         
-        public Option<U> map<U>(Func<T, U> f) {
-            if (isEmpty)
+        public Option<U> Map<U>(Func<T, U> f) {
+            if (IsEmpty)
                 return None<U>.apply();
-            return new Some<U>(f(get()));
+            return new Some<U>(f(Get()));
         }
 
-        public T getOrElse(Func<T> f) {
-            if (isEmpty)
+        public T GetOrElse(Func<T> f) {
+            if (IsEmpty)
                 return f();
-            return get();
+            return Get();
         }
 
-        public Option<U> flatMap<U>(Func<T, Option<U>> f) {
-            if (isEmpty)
+        public Option<U> FlatMap<U>(Func<T, Option<U>> f) {
+            if (IsEmpty)
                 return Option.None();
-            return f(get());
+            return f(Get());
         }
 
         /// <summary>
@@ -40,16 +40,16 @@ namespace Scalesque {
         /// </summary>
         /// <param name="f"></param>
         /// <returns></returns>
-        public Option<T> or(Func<Option<T>> f) {
-            if (hasValue)
+        public Option<T> Or(Func<Option<T>> f) {
+            if (HasValue)
                 return this;
             return f();
         }
 
         public IEnumerator<T> GetEnumerator() {
-            if (isEmpty)
+            if (IsEmpty)
                 return new List<T>().GetEnumerator();
-            return new List<T> {get()}.GetEnumerator();
+            return new List<T> {Get()}.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
@@ -58,11 +58,11 @@ namespace Scalesque {
     }
 
     public sealed class None<T> : Option<T> {
-        public override bool isEmpty {
+        public override bool IsEmpty {
             get { return true; }
         }
 
-        public override T get() {
+        public override T Get() {
             throw new ArgumentNullException("Get called on None");
         }
 
@@ -83,11 +83,11 @@ namespace Scalesque {
             this.value = value;
         }
 
-        public override bool isEmpty {
+        public override bool IsEmpty {
             get { return false; }
         }
 
-        public override T get() {
+        public override T Get() {
             return value;
         }
     }
@@ -119,11 +119,11 @@ namespace Scalesque {
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Option<T> opt<T>(this T value) {
+        public static Option<T> Opt<T>(this T value) {
             return apply(value);
         }
 
-        public static Option<T> opt<T>(this Nullable<T> value) where T:struct {
+        public static Option<T> Opt<T>(this Nullable<T> value) where T:struct {
             if (value.HasValue)
                 return apply(value.Value);
             return None();
@@ -135,8 +135,8 @@ namespace Scalesque {
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <returns></returns>
-        public static IEnumerable<T> flatten<T>(this IEnumerable<Option<T>> enumerable) {
-            return from option in enumerable where option.hasValue select option.get();
+        public static IEnumerable<T> Flatten<T>(this IEnumerable<Option<T>> enumerable) {
+            return from option in enumerable where option.HasValue select option.Get();
         }
 
         /// <summary>

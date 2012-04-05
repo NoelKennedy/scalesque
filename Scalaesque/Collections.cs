@@ -23,7 +23,7 @@ namespace Scalesque {
             return acc;
         }
 
-        public static IEnumerable<TResult> Map<T, TResult>(this IEnumerable<T> list, Func<T, TResult> func)
+        public static IEnumerable<U> Map<T, U>(this IEnumerable<T> list, Func<T, U> func)
         {
             foreach (var i in list)
                 yield return func(i);

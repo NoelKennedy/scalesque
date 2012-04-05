@@ -13,7 +13,7 @@ namespace Scalesque {
         /// <param name="dict"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static Option<U> get<T,U>(this IDictionary<T,U> dict, T key) {
+        public static Option<U> Get<T,U>(this IDictionary<T,U> dict, T key) {
             U value;
             dict.TryGetValue(key, out value);
             return Option.apply(value);
@@ -26,10 +26,10 @@ namespace Scalesque {
         /// <typeparam name="U"></typeparam>
         /// <param name="dict"></param>
         /// <param name="key"></param>
-        /// <param name="f"></param>
+        /// <param name="orDefault"></param>
         /// <returns></returns>
-        public static U getOrElse<T, U>(this IDictionary<T, U> dict, T key, Func<U> orDefault) {
-            return get(dict, key).getOrElse(orDefault);
+        public static U GetOrElse<T, U>(this IDictionary<T, U> dict, T key, Func<U> orDefault) {
+            return Get(dict, key).GetOrElse(orDefault);
         }
     }
 }

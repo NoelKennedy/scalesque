@@ -31,8 +31,8 @@
         /// <typeparam name="U"></typeparam>
         /// <param name="either"></param>
         /// <returns></returns>
-        public static Option<T> unapply<T,U>(Either<T,U> either) {
-            return Option.apply(either as Left<T, U>).map(x=>x.Get());
+        public static Option<T> unapply<U>(Either<T,U> either) {
+            return Option.apply(either as Left<T, U>).Map(x=>x.Get());
         }
     }
 
@@ -55,8 +55,8 @@
         /// <typeparam name="U"></typeparam>
         /// <param name="either"></param>
         /// <returns></returns>
-        public static Option<U> unapply<T, U>(Either<T, U> either) {
-            return Option.apply(either as Right<T, U>).map(x => x.Get());
+        public static Option<U> unapply<T>(Either<T, U> either) {
+            return Option.apply(either as Right<T, U>).Map(x => x.Get());
         }
     }
 }

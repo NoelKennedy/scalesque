@@ -44,7 +44,7 @@
     <Compile Include="Either.cs" />
     <Compile Include="Either.implicits.cs" />
     <Compile Include="General.cs" />
-    <Compile Include="Maps.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="Option.implicits.cs" />
     <Compile Include="PatternMatcher.cs" />

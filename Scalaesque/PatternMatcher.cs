@@ -24,7 +24,7 @@ namespace Scalesque {
         /// <param name="extractor">Func{A, Option{B}} Function which tries to extract a {B} from the {A}</param>
         /// <param name="handler">Func{B,C} Handler function which takes the successfully extracted {B} from the extractor and converts it to a {C}</param>
         public void Add<B>(Func<A, Option<B>> extractor, Func<B,C> handler) {
-            list.Add(x=>extractor(x).map(handler));
+            list.Add(x=>extractor(x).Map(handler));
         }
 
         /// <summary>
@@ -58,15 +58,15 @@ namespace Scalesque {
         /// </summary>
         /// <param name="pattern">A</param>
         /// <returns>Option{C}.  Some{C} if a pattern matches, else None{C}</returns>
-        public Option<C> get(A pattern) {
+        public Option<C> Get(A pattern) {
             //This implementation probably isnt the fastest, as it won't short circuit the fold if a pattern matches, but it does demonstrate the power of fp!
 
             //need to help the compiler a bit here to force conversion of None to None<T>
-            return list.FoldLeft<Option<C>,Func<A, Option<C>>>(Option.None(), (acc, maybe) => acc.or(()=>maybe(pattern)));
+            return list.FoldLeft<Option<C>,Func<A, Option<C>>>(Option.None(), (acc, maybe) => acc.Or(()=>maybe(pattern)));
         }
 
-        public C getOrElse(A pattern, Func<C> f) {
-            return get(pattern).getOrElse(f);
+        public C GetOrElse(A pattern, Func<C> f) {
+            return Get(pattern).GetOrElse(f);
         }
 
         public IEnumerator<A> GetEnumerator() {

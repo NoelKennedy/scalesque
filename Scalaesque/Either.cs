@@ -20,6 +20,7 @@ namespace Scalesque {
         /// Unifies the disjoint into a {A}
         /// </summary>
         /// <typeparam name="T">A The unified type</typeparam>
+        /// <typeparam name="A"></typeparam>
         /// <param name="foldLeft">Func{T,A} Takes a Left{T} and converted to a A</param>
         /// <param name="foldRight">Func{U,T} Takes a Right{U} and converted to a A</param>
         /// <returns>A The unified type</returns>
