@@ -12,8 +12,9 @@
         }
     }
 
+   
     /// <summary>
-    /// Extractor for Left{T}
+    /// Scalesque use only
     /// </summary>
     /// <remarks>This class allows us to simulate scala's type inference to return an Either{T,U} without the libary user having to tell the c# compiler the type of {U}</remarks>
     /// <typeparam name="T"></typeparam>
@@ -23,21 +24,10 @@
         internal Left(T value) {
             this.value = value;
         }
-
-        /// <summary>
-        /// Extractor for Left{T}
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <param name="either"></param>
-        /// <returns></returns>
-        public static Option<T> unapply<U>(Either<T,U> either) {
-            return Option.apply(either as Left<T, U>).Map(x=>x.Get());
-        }
     }
 
     /// <summary>
-    /// Extractor for Right{T}
+    /// Scalesque use only
     /// </summary>
     /// <remarks>This class allows us to simulate scala's type inference to return an Either{T,U} without the libary user having to tell the c# compiler the type of {T}</remarks>
     /// <typeparam name="U"></typeparam>
@@ -46,17 +36,6 @@
 
         internal Right(U value) {
             this.value = value;
-        }
-
-        /// <summary>
-        /// Extractor for Right{T}
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <param name="either"></param>
-        /// <returns></returns>
-        public static Option<U> unapply<T>(Either<T, U> either) {
-            return Option.apply(either as Right<T, U>).Map(x => x.Get());
         }
     }
 }

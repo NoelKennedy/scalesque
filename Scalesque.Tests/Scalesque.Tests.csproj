@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EitherOr\When_left_extracting.cs" />
+    <Compile Include="Patterns\When_pattern_matching.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="Options\When_applying_a_null.cs" />
     <Compile Include="Options\When_a_value_is_applied.cs" />

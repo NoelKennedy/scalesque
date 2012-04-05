@@ -20,8 +20,8 @@ namespace Scalesque.EitherOr
         private Option<Exception> rightExtracted;
 
         public override void Because() {
-            leftExtracted = Left<Exception>.unapply(left);
-            rightExtracted = Left<Exception>.unapply(right);
+            leftExtracted = Left.unapply(left);
+            rightExtracted = Left.unapply(right);
         }
 
         [Test]
@@ -40,8 +40,8 @@ namespace Scalesque.EitherOr
         private Option<string> rightExtracted;
 
         public override void Because() {
-            leftExtracted = Right<string>.unapply(left);
-            rightExtracted = Right<string>.unapply(right);
+            leftExtracted = Right.unapply(left);
+            rightExtracted = Right.unapply(right);
         }
 
         [Test]

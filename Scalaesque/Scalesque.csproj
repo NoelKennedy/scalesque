@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Collections.cs" />
     <Compile Include="Either.cs" />
+    <Compile Include="Either.Extractors.cs" />
     <Compile Include="Either.implicits.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Map.cs" />
