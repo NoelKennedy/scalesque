@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalesque", "Scalaesque\Scalesque.csproj", "{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalesque.Tests", "Scalesque.Tests\Scalesque.Tests.csproj", "{13179235-B77A-4FD4-A7FE-2DC66529F4E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13179235-B77A-4FD4-A7FE-2DC66529F4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13179235-B77A-4FD4-A7FE-2DC66529F4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13179235-B77A-4FD4-A7FE-2DC66529F4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13179235-B77A-4FD4-A7FE-2DC66529F4E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
