@@ -33,7 +33,9 @@
         <EventHandlerPatternLong>$object$_On$event$</EventHandlerPatternLong>
         <EventHandlerPatternShort>$event$Handler</EventHandlerPatternShort>
         <OverrideDefaultSettings>True</OverrideDefaultSettings>
-        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="Aa_bb" ElementKind="TypesAndNamespaces">
+          <ExtraRule Prefix="" Suffix="" Style="AaBb" />
+        </PredefinedRule>
         <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AA_BB" ElementKind="TypeParameters" />
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent">

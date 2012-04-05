@@ -44,7 +44,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OptionTests.cs" />
+    <Compile Include="UnitTestBase.cs" />
+    <Compile Include="Optional\When_applying_a_null.cs" />
+    <Compile Include="Optional\When_a_value_is_applied.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
