@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace Scalesque.EitherOr {
@@ -28,19 +24,19 @@ namespace Scalesque.EitherOr {
         //here are some business rules
         public Either<LoanDeclinedReason, LoanRequest> CheckCustomerCredit(LoanRequest request) {
             if (request.Customer.CreditScore > 8) return Either.Right(request);
-            else return Either.Left(LoanDeclinedReason.InsufficientCreditScore);
+            return Either.Left(LoanDeclinedReason.InsufficientCreditScore);
         }
 
         public Either<LoanDeclinedReason, LoanRequest> CheckGoldPrerequisiteCustomer(LoanRequest request) {
             if (request.Value < 10000) return Either.Right(request); //dont need gold status for less than 10,000
-            else if (request.Customer.GoldCustomer) return Either.Right(request);
-            else return Either.Left(LoanDeclinedReason.RequiresGoldCustomer);
+            if (request.Customer.GoldCustomer) return Either.Right(request);
+            return Either.Left(LoanDeclinedReason.RequiresGoldCustomer);
         }
 
         public Either<LoanDeclinedReason, LoanRequest> CheckSillyAmount(LoanRequest request) {
             if (request.Value > 1000000)
                 return Either.Left(LoanDeclinedReason.LoanRequestTooHigh);
-            else return Either.Right(request);
+            return Either.Right(request);
         }
     }
 
@@ -50,7 +46,7 @@ namespace Scalesque.EitherOr {
 
         public override void Given() {
             request = new LoanRequest {
-                    Customer = new Customer() { CreditScore = 10, GoldCustomer = true },
+                    Customer = new Customer { CreditScore = 10, GoldCustomer = true },
                     Value = 9000
                 };
         }
