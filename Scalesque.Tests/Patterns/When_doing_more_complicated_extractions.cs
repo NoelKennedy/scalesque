@@ -6,6 +6,20 @@ using FluentAssertions;
 using NUnit.Framework;
 
 namespace Scalesque.Patterns {
+
+    class Foo {
+        public bool IsOrderOfBritishEmpire { get; set; }
+        public bool IsSidney { get; set; }
+    }
+    class Bar {
+        public string Title { get; set; }
+        public string Name { get; set; }
+    }
+
+    class Mar {
+        public int SomeNumber { get; set; }
+    }
+
     class When_doing_more_complicated_extractions : UnitTestBase {
         private Foo fooSir;
         private Foo fooPoitier;
@@ -13,25 +27,13 @@ namespace Scalesque.Patterns {
         private Option<Mar> sir;
         private Option<Mar> mr;
 
-        class Foo {
-            public bool IsOrderOfBritishEmpire { get; set; }
-            public bool IsSidney { get; set; }
-        }
-        class Bar {
-            public string Title { get; set; }
-            public string Name { get; set; }
-        }
-
-        class Mar {
-            public int SomeNumber { get; set; }
-        }
 
         private Option<Bar> KnightedFoosToBar(Foo foo) {
-            return foo.IsOrderOfBritishEmpire ? Option.apply(new Bar { Title = "Sir", Name = "BigHead" }) : Option.None();
+            return foo.IsOrderOfBritishEmpire ? Option.Some(new Bar {Title = "Sir", Name = "BigHead"}) : Option.None();
         }
 
         private Option<Bar> MrTibbs(Foo foo) {
-            return foo.IsSidney ? Option.apply(new Bar { Title = "Mr", Name = "Tibbs" }) : Option.None();
+            return foo.IsSidney ? Option.Some(new Bar { Title = "Mr", Name = "Tibbs" }) : Option.None();
         }
 
         public override void Given() {
@@ -39,8 +41,8 @@ namespace Scalesque.Patterns {
             fooPoitier = new Foo { IsSidney = true};
 
             matcher = new PatternMatcher<Foo, Mar> {
-                {KnightedFoosToBar, bar => new Mar {SomeNumber = 999}},
-                {MrTibbs, bar => new Mar {SomeNumber = bar.Name.Length}},
+                {KnightedFoosToBar, (Bar bar) => new Mar {SomeNumber = 999}},
+                {MrTibbs, (Bar bar) => new Mar {SomeNumber = bar.Name.Length}},
                 {()=>new Mar{SomeNumber = 0}} //alternate to GetOrElse for default
             };
         }

@@ -45,6 +45,15 @@ namespace Scalesque {
         }
 
         /// <summary>
+        /// Adds a predicate which extracts the A to pass to the handler
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <param name="handler"></param>
+        public void Add(Predicate<A> pattern, Func<A, C> handler) {
+            list.Add(x => pattern(x) ? Option.Some(handler(x)) : Option.None());
+        }
+
+        /// <summary>
         /// Adds a even simpler predicate pattern
         /// </summary>
         /// <param name="predicate"></param>

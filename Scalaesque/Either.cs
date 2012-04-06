@@ -33,6 +33,8 @@ namespace Scalesque {
         /// <param name="f"></param>
         /// <returns></returns>
         public abstract Either<T, V> Map<V>(Func<U, V> f);
+
+        public abstract Either<T, V> FlatMap<V>(Func<U, Either<T, V>> f);
     }
 
     /// <summary>
@@ -55,6 +57,10 @@ namespace Scalesque {
         }
 
         public override Either<T, V> Map<V>(Func<U, V> f) {
+            return Either.Left(left);
+        }
+
+        public override Either<T, Y> FlatMap<Y>(Func<U, Either<T, Y>> f) {
             return Either.Left(left);
         }
 
@@ -83,6 +89,10 @@ namespace Scalesque {
 
         public override Either<T, V> Map<V>(Func<U, V> f) {
             return Either.Right(f(right));
+        }
+
+        public override Either<T, V> FlatMap<V>(Func<U, Either<T, V>> f) {
+            return f(right);
         }
 
         public U Get() {

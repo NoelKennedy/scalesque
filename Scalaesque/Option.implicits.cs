@@ -5,11 +5,4 @@
             return None<T>.apply();
         }
     }
-
-    /// <summary>
-    /// Scalesque use only
-    /// </summary>
-    public sealed class None {
-        internal None() {}
-    }
 }
