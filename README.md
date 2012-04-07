@@ -1,5 +1,5 @@
 # scalesque
-## A scala inspired functional programming library written in c#
+## A scala inspired functional programming library written in c&#35;
 
 scalesque is currently *under construction* and the API is unstable.  
 
