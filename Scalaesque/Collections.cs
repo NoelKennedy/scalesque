@@ -7,7 +7,16 @@ namespace Scalesque {
 
     public static class Collections
     {
-        public static A FoldLeft<A, B>(this IEnumerable<B> list, A accumulator, Func<A, B, A> f) {
+        /// <summary>
+        /// Folds a collection of instances of type &lt;T&gt; into a single instance of type &lt;U&gt;
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="accumulator"></param>
+        /// <param name="f"></param>
+        /// <returns>&lt;U&gt;</returns>
+        public static U FoldLeft<T, U>(this IEnumerable<T> list, U accumulator, Func<U, T, U> f) {
             return list.Aggregate(accumulator, f);
         }
 
@@ -23,10 +32,16 @@ namespace Scalesque {
             return acc;
         }
 
-        public static IEnumerable<U> Map<T, U>(this IEnumerable<T> list, Func<T, U> func)
-        {
-            foreach (var i in list)
-                yield return func(i);
+        /// <summary>
+        /// Maps a type &lt;T&gt; to a &lt;U&gt;  Alias for Linq Select
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="func"></param>
+        /// <returns>&lt;U&gt;</returns>
+        public static IEnumerable<U> Map<T, U>(this IEnumerable<T> list, Func<T, U> func) {
+            return list.Select(func);
         }
 
         [DebuggerStepThrough]
@@ -40,8 +55,7 @@ namespace Scalesque {
         }
 
         // Turn remaining (unconsumed) elements of enumerator into enumerable
-        private static IEnumerable<T> EnumerateTail<T>(IEnumerator<T> en)
-        {
+        private static IEnumerable<T> EnumerateTail<T>(IEnumerator<T> en) {
             while (en.MoveNext()) yield return en.Current;
         }
 
@@ -49,7 +63,12 @@ namespace Scalesque {
             return source.SelectMany(x => x);
         }
 
-
+        /// <summary>
+        /// Performs a side effect on each member of a collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <param name="f"></param>
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> f) {
             foreach (var item in enumerable)
                 f(item);
