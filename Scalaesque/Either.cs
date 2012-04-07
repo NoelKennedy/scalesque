@@ -14,7 +14,13 @@ namespace Scalesque {
         /// </summary>
         /// <param name="leftAction">Action{T} Side effect to perform on a Left{T}</param>
         /// <param name="rightAction">Action{U} Side effect to perform on a Right{U}</param>
-        public abstract void ForEach(Action<T> leftAction, Action<U> rightAction);
+        public void ForEach(Action<T> leftAction, Action<U> rightAction) {
+            if (IsRight)
+                rightAction(GetRight());
+            else {
+                leftAction(GetLeft());
+            }
+        }
 
         /// <summary>
         /// Unifies the disjoint into a {A}
@@ -24,7 +30,13 @@ namespace Scalesque {
         /// <param name="foldLeft">Func{T,A} Takes a Left{T} and converted to a A</param>
         /// <param name="foldRight">Func{U,T} Takes a Right{U} and converted to a A</param>
         /// <returns>A The unified type</returns>
-        public abstract A Fold<A>(Func<T, A> foldLeft, Func<U, A> foldRight);
+        public A Fold<A>(Func<T, A> foldLeft, Func<U, A> foldRight) {
+            if (IsRight)
+                return foldRight(GetRight());
+            else {
+                return foldLeft(GetLeft());
+            }
+        }
 
         /// <summary>
         /// Maps the right side of the Either
@@ -32,9 +44,50 @@ namespace Scalesque {
         /// <typeparam name="V"></typeparam>
         /// <param name="f"></param>
         /// <returns></returns>
-        public abstract Either<T, V> Map<V>(Func<U, V> f);
+        public Either<T, V> Map<V>(Func<U, V> f) {
+            if(IsRight) 
+                return Either.Right(f(GetRight()));
+            return Either.Left(GetLeft());
+        }
 
-        public abstract Either<T, V> FlatMap<V>(Func<U, Either<T, V>> f);
+        /// <summary>
+        /// Maps the right side of the Either 
+        /// </summary>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public Either<T, V> FlatMap<V>(Func<U, Either<T, V>> f) {
+            if (IsRight)
+                return f(GetRight());
+            return
+                Either.Left(GetLeft());
+        }
+
+        /// <summary>
+        /// Gets if this is a Right&lt;T,U&gt;
+        /// </summary>
+        public abstract bool IsRight { get;}
+
+        /// <summary>
+        /// Gets if this is a Left&lt;T,U&gt;
+        /// </summary>
+        public bool IsLeft {
+            get { return !IsRight; }
+        }
+
+        /// <summary>
+        /// Gets the Left value
+        /// </summary>
+        /// <exception cref="NotSupportedException">Thrown if called on a Right&lt;T,U&gt;</exception>
+        /// <returns>T</returns>
+        public abstract T GetLeft();
+
+        /// <summary>
+        /// Gets the Right value
+        /// </summary>
+        /// <exception cref="NotSupportedException">Thrown if called on a Left&lt;T,U&gt;</exception>
+        /// <returns>U</returns>
+        public abstract U GetRight();
     }
 
     /// <summary>
@@ -48,24 +101,16 @@ namespace Scalesque {
             this.left = left;
         }
 
-        public override void ForEach(Action<T> leftAction, Action<U> rightAction) {
-            leftAction(left);
+        public override bool IsRight {
+            get { return false; }
         }
 
-        public override A Fold<A>(Func<T, A> foldLeft, Func<U, A> foldRight) {
-            return foldLeft(left);
-        }
-
-        public override Either<T, V> Map<V>(Func<U, V> f) {
-            return Either.Left(left);
-        }
-
-        public override Either<T, Y> FlatMap<Y>(Func<U, Either<T, Y>> f) {
-            return Either.Left(left);
-        }
-
-        public T Get() {
+        public override T GetLeft() {
             return left;
+        }
+
+        public override U GetRight() {
+            throw new NotSupportedException("GetRight() called on Left<T,U>");
         }
     }
 
@@ -80,22 +125,15 @@ namespace Scalesque {
            this.right = right;
         }
 
-        public override void ForEach(Action<T> leftAction, Action<U> rightAction) {
-            rightAction(right);
-        }
-        public override A Fold<A>(Func<T, A> foldLeft, Func<U, A> foldRight) {
-            return foldRight(right);
+        public override bool IsRight {
+            get { return true; }
         }
 
-        public override Either<T, V> Map<V>(Func<U, V> f) {
-            return Either.Right(f(right));
+        public override T GetLeft() {
+            throw new NotSupportedException("GetLeft() called on Right<T,U>");
         }
 
-        public override Either<T, V> FlatMap<V>(Func<U, Either<T, V>> f) {
-            return f(right);
-        }
-
-        public U Get() {
+        public override U GetRight() {
             return right;
         }
     }

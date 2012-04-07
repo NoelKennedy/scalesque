@@ -13,7 +13,11 @@
         /// <param name="either"></param>
         /// <returns></returns>
         public static Option<T> unapply<T, U>(Either<T, U> either) {
-            return Option.apply(either as Left<T, U>).Map(x => x.Get());
+            if (either.IsLeft)
+                return Option.Some(either.GetLeft());
+            else {
+                return Option.None();
+            }
         }
     }
 
@@ -30,7 +34,11 @@
         /// <param name="either"></param>
         /// <returns></returns>
         public static Option<U> unapply<T,U>(Either<T, U> either) {
-            return Option.apply(either as Right<T, U>).Map(x => x.Get());
+            if (either.IsRight)
+                return Option.Some(either.GetRight());
+            else {
+                return Option.None();
+            }
         }
     }
    
