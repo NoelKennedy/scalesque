@@ -67,12 +67,12 @@ namespace Scalesque {
         /// Checks the pattern against the pattern matchers.  The first extractor which matches the pattern is the result.  If no patterns match, the result is None{T}
         /// </summary>
         /// <param name="pattern">A</param>
-        /// <returns>Option{C}.  Some{C} if a pattern matches, else None{C}</returns>
+        /// <returns>Option&lt;C&gt;.  Some&lt;C&gt; if a pattern matches, else None&lt;C&gt;</returns>
         public Option<C> Get(A pattern) {
             //This implementation probably isnt the fastest, as it won't short circuit the fold if a pattern matches, but it does demonstrate the power of fp!
 
             //need to help the compiler a bit here to force conversion of None to None<T>
-            return list.FoldLeft<Option<C>,Func<A, Option<C>>>(Option.None(), (acc, maybe) => acc.Or(()=>maybe(pattern)));
+            return list.FoldLeft<Func<A, Option<C>>, Option<C>>(Option.None(), (acc, maybe) => acc.Or(() => maybe(pattern)));
         }
 
         public C GetOrElse(A pattern, Func<C> f) {

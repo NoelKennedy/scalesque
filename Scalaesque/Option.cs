@@ -6,9 +6,9 @@ using System.Linq;
 namespace Scalesque {
 
     /// <summary>
-    /// Represents an optional value.  Is either a Some{T} or a None{T} representing value present or missing respectively.
+    /// Represents an optional value.  Is either a <see cref="Some{T}"/> or a <see cref="None{T}"/> representing value present or missing respectively.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">&lt;T&gt; The type of the optional value</typeparam>
     public abstract partial class Option<T> : IEnumerable<T> {
         
         public abstract bool IsEmpty { get; }
@@ -17,18 +17,35 @@ namespace Scalesque {
 
         public abstract T Get();
         
+        /// <summary>
+        /// Maps the type of an optional value from &lt;T&gt; to a &lt;U&gt;
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public Option<U> Map<U>(Func<T, U> f) {
             if (IsEmpty)
                 return None<U>.apply();
             return new Some<U>(f(Get()));
         }
 
+        /// <summary>
+        /// Gets the value if it exists, else a default value
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public T GetOrElse(Func<T> f) {
             if (IsEmpty)
                 return f();
             return Get();
         }
 
+        /// <summary>
+        /// Flattens the value and maps it to an Option&lt;U&gt;
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public Option<U> FlatMap<U>(Func<T, Option<U>> f) {
             if (IsEmpty)
                 return Option.None();
@@ -57,6 +74,10 @@ namespace Scalesque {
         }
     }
 
+    /// <summary>
+    /// Represents a missing optional value
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public sealed class None<T> : Option<T> {
         public override bool IsEmpty {
             get { return true; }
@@ -71,11 +92,12 @@ namespace Scalesque {
         }
 
         private None() {}
-
-        //todo: None equality
-
     }
 
+    /// <summary>
+    /// Represents a present optional value
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public sealed class Some<T> : Option<T> {
         private readonly T value;
 
@@ -109,8 +131,6 @@ namespace Scalesque {
             return new Some<T>(value);
         }
 
-        
-
         /// <summary>
         /// Converts a reference to T an <see cref="Option{T}"/>.  Result be <see cref="Some{T}"/> if the reference is not null else will be <see cref="None{T}"/>.
         /// 
@@ -130,7 +150,7 @@ namespace Scalesque {
         }
 
         /// <summary>
-        /// Flattens an IEnenumerable{Option{T}} to a IEnenumerable{T}
+        /// Flattens an IEnumerable&lt;Option&lt;T&gt;&gt; to a IEnenumerable&lt;T&gt;
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
@@ -140,16 +160,21 @@ namespace Scalesque {
         }
 
         /// <summary>
-        /// Convenience method for creating None{T}
+        /// Convenience method for creating None&lt;T&gt;
         /// </summary>
-        /// <returns>None.  implicitly converted to None{T}</returns>
+        /// <returns>None.  implicitly converted to None&lt;T&gt;</returns>
         public static None None() {
             return new None();
         }
 
+        /// <summary>
+        /// Constructs a Some&lt;T&gt; from a variable
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static Option<T> Some<T>(T value) {
             return apply(value);
         }
     }
-
 }

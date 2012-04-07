@@ -20,8 +20,7 @@ namespace Scalesque {
             return list.Aggregate(accumulator, f);
         }
 
-        public static T Reduce<T>(this IEnumerable<T> list, Func<T,T,T> f)
-        {
+        public static T Reduce<T>(this IEnumerable<T> list, Func<T,T,T> f){
             var en = list.GetEnumerator();
             en.MoveNext();
             var acc = en.Current;
