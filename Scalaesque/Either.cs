@@ -80,14 +80,22 @@ namespace Scalesque {
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown if called on a Right&lt;T,U&gt;</exception>
         /// <returns>T</returns>
-        public abstract T GetLeft();
+        protected abstract T GetLeft();
 
         /// <summary>
         /// Gets the Right value
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown if called on a Left&lt;T,U&gt;</exception>
         /// <returns>U</returns>
-        public abstract U GetRight();
+        protected abstract U GetRight();
+
+        public RightProjection<T,U> ProjectRight() {
+            return new RightProjection<T, U>(this, GetRight);
+        }
+
+        public LeftProjection<T,U> ProjectLeft() {
+            return new LeftProjection<T, U>(this, GetLeft);
+        }
     }
 
     /// <summary>
@@ -105,11 +113,11 @@ namespace Scalesque {
             get { return false; }
         }
 
-        public override T GetLeft() {
+        protected override T GetLeft() {
             return left;
         }
 
-        public override U GetRight() {
+        protected override U GetRight() {
             throw new NotSupportedException("GetRight() called on Left<T,U>");
         }
     }
@@ -129,11 +137,11 @@ namespace Scalesque {
             get { return true; }
         }
 
-        public override T GetLeft() {
+        protected override T GetLeft() {
             throw new NotSupportedException("GetLeft() called on Right<T,U>");
         }
 
-        public override U GetRight() {
+        protected override U GetRight() {
             return right;
         }
     }

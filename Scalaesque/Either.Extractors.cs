@@ -13,11 +13,7 @@
         /// <param name="either"></param>
         /// <returns></returns>
         public static Option<T> unapply<T, U>(Either<T, U> either) {
-            if (either.IsLeft)
-                return Option.Some(either.GetLeft());
-            else {
-                return Option.None();
-            }
+            return either.ProjectLeft().ToOption();
         }
     }
 
@@ -34,11 +30,7 @@
         /// <param name="either"></param>
         /// <returns></returns>
         public static Option<U> unapply<T,U>(Either<T, U> either) {
-            if (either.IsRight)
-                return Option.Some(either.GetRight());
-            else {
-                return Option.None();
-            }
+            return either.ProjectRight().ToOption();
         }
     }
    
