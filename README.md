@@ -5,11 +5,11 @@ scalesque is currently *under construction* and the API is unstable.
 
 ### Features list
 
-* Option<T> (aka Maybe<T>)
-* Either<T,U>
+* Option&lt;T&gt; (aka Maybe&lt;T&gt;)
+* Either&lt;T,U&gt;
 * Experimental pattern matching and extraction
 * head :: tail
-* Map / Fold / Reduce (via IEnumerable<T>)
+* Map / Fold / Reduce (via IEnumerable&lt;T&gt;)
 
 ## Dependencies
 
