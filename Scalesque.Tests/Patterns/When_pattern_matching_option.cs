@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace Scalesque.Patterns {
@@ -10,7 +6,7 @@ namespace Scalesque.Patterns {
         protected PatternMatcher<Option<string>, int> matcher;
 
         public override void Given() {
-            matcher = new PatternMatcher<Option<string>, int>() 
+            matcher = new PatternMatcher<Option<string>, int>
                       {
                           {Some.unapply, str => str.Length}, //matches Some<string>
                           {None.unapply, () => 1977}   //matches None<string>
@@ -23,7 +19,7 @@ namespace Scalesque.Patterns {
         private Option<int> result;
 
         public override void Because() {
-            result = matcher.Get(Option.apply("Should match some"));
+            result = matcher.Get(Option.Some("Should match some"));
         }
 
         [Test]
