@@ -53,8 +53,8 @@ namespace Scalesque.EitherOr {
 
         public override void Because() {
             Either<LoanDeclinedReason, LoanRequest> checkOne = CheckCustomerCredit(request);
-            Either<LoanDeclinedReason, LoanRequest> checkTwo = checkOne.FlatMap(CheckGoldPrerequisiteCustomer); //Note:FlatMap instead of Map
-            Either<LoanDeclinedReason, LoanRequest> checkThree = checkTwo.FlatMap(CheckSillyAmount);
+            Either<LoanDeclinedReason, LoanRequest> checkTwo = checkOne.ProjectRight().FlatMap(CheckGoldPrerequisiteCustomer); //Note:FlatMap instead of Map
+            Either<LoanDeclinedReason, LoanRequest> checkThree = checkTwo.ProjectRight().FlatMap(CheckSillyAmount);
             result = checkThree.Fold(failReason=>false,passedLoan=>true);
         }
 

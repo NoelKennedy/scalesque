@@ -2,6 +2,12 @@
 
 namespace Scalesque {
 
+    /// <summary>
+    /// A projection of the Right side of an either.
+    /// Provides methods for manipulating the potential right value
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="U"></typeparam>
     public sealed class RightProjection<T,U> {
         private readonly Either<T, U> either;
         private readonly Func<U> getRight;
@@ -37,6 +43,36 @@ namespace Scalesque {
                 action(getRight());
         }
 
+        /// <summary>
+        /// Maps through the Right side
+        /// </summary>
+        /// <typeparam name="Y">New type of the Right</typeparam>
+        /// <param name="f">Func&lt;U,Y&gt; A function to convert U to a Y</param>
+        /// <returns></returns>
+        public Either<T,Y> Map<Y>(Func<U,Y> f) {
+            if (either.IsRight)
+                return Either.Right(f(getRight()));
+
+            return Either.Left(either.ProjectLeft().Get());
+        }
+
+        /// <summary>
+        /// Flattens and maps through Right side
+        /// </summary>
+        /// <typeparam name="Y"></typeparam>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public Either<T,Y> FlatMap<Y>(Func<U, Either<T,Y>> f) {
+            if (either.IsRight)
+                return f(getRight());
+            return Either.Left(either.ProjectLeft().Get());
+        }
+
+        /// <summary>
+        /// Gets the value of the Right or converts the left to U
+        /// </summary>
+        /// <param name="or">Function to convert a T to a U</param>
+        /// <returns></returns>
         public U GetOrElse(Func<T, U> or) {
             if (either.IsRight)
                 return getRight();
@@ -44,3 +80,4 @@ namespace Scalesque {
         }
     }
 }
+

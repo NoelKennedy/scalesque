@@ -39,31 +39,6 @@ namespace Scalesque {
         }
 
         /// <summary>
-        /// Maps the right side of the Either
-        /// </summary>
-        /// <typeparam name="V"></typeparam>
-        /// <param name="f"></param>
-        /// <returns></returns>
-        public Either<T, V> Map<V>(Func<U, V> f) {
-            if(IsRight) 
-                return Either.Right(f(GetRight()));
-            return Either.Left(GetLeft());
-        }
-
-        /// <summary>
-        /// Maps the right side of the Either 
-        /// </summary>
-        /// <typeparam name="V"></typeparam>
-        /// <param name="f"></param>
-        /// <returns></returns>
-        public Either<T, V> FlatMap<V>(Func<U, Either<T, V>> f) {
-            if (IsRight)
-                return f(GetRight());
-            return
-                Either.Left(GetLeft());
-        }
-
-        /// <summary>
         /// Gets if this is a Right&lt;T,U&gt;
         /// </summary>
         public abstract bool IsRight { get;}
