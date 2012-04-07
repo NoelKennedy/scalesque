@@ -153,5 +153,25 @@ namespace Scalesque {
         public static Right<U> Right<U>(U value) {
             return new Right<U>(value);
         }
+
+        /// <summary>
+        /// Turns a object into a Left&lt;T,U&gt;
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Left<T> ToLeft<T>(this T value) {
+            return Left(value);
+        }
+
+        /// <summary>
+        /// Turns a object into a Right&lt;T,U&gt;
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Right<T> ToRight<T>(this T value) {
+            return Right(value);
+        }
     }
 }
