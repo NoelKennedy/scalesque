@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Scalesque {
 
+    /// <summary>
+    /// Provides extension methods for Dictionaries
+    /// </summary>
     public static class Map {
 
         /// <summary>

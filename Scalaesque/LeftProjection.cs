@@ -3,7 +3,7 @@
 namespace Scalesque {
 
     /// <summary>
-    /// A projection of the Left side of an Either&lt;T,UU&gt;.  Provides methods for manipulating the potential left value.
+    /// A projection of the Left side of an Either&lt;T,U&gt;.  Provides methods for manipulating the potential left value.
     /// </summary>
     /// <typeparam name="T">T The type of the left side value</typeparam>
     /// <typeparam name="U">U The type of the right side value</typeparam>

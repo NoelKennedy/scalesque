@@ -1,14 +1,22 @@
 ﻿namespace Scalesque {
-    public static class Some{
+
+    /// <summary>
+    /// Extractor for Some&lt;T&gt;
+    /// </summary>
+    public static class Some {
         public static Option<T> unapply<T>(Option<T> option) {
             return option;
         }
     }
 
     /// <summary>
-    /// Extractor for None. Instance use, scalesque only (improces c# compiler type inference)
+    /// Extractor for None.
     /// </summary>
     public sealed class None {
+
+        /// <summary>
+        ///  Instance use, scalesque only (improves c# compiler type inference)
+        /// </summary>
         internal None() { }
 
         public static bool unapply<T>(Option<T> option) {
