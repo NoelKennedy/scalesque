@@ -1,5 +1,8 @@
 ﻿
 
+using System.Collections;
+using System.Collections.Generic;
+
 namespace Scalesque {
     using System;
 
@@ -10,7 +13,7 @@ namespace Scalesque {
         /// </summary>
         /// <typeparam name="T">T The type of the failure side value</typeparam>
         /// <typeparam name="U">U The type of the Success side value</typeparam>
-        public sealed class FailureProjection<T, U> {
+        public sealed class FailureProjection<T, U> : IEnumerable<T> {
             private readonly Validation<T, U> validation;
             private readonly Func<T> getFailure;
 
@@ -86,6 +89,16 @@ namespace Scalesque {
                 if (validation.IsFailure)
                     return new NonEmptyList<T>(getFailure()).ToFailure();
                 return validation.ProjectSuccess().Get().ToSuccess();
+            }
+
+            public IEnumerator<T> GetEnumerator() {
+                if (validation.IsFailure)
+                    return new List<T>(1){getFailure()}.GetEnumerator();
+                else return new List<T>().GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() {
+                return GetEnumerator();
             }
         }
     }

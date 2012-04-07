@@ -73,12 +73,20 @@ namespace Scalesque {
         /// Projects fail which allows methods for manipulating a potential fail value
         /// </summary>
         /// <returns> FailureProjection&lt;T,U&gt;</returns>
-        public FailureProjection<T, U> ProjectFailure() {
+        public FailureProjection<T, U> ProjectFailure()  {
             return new FailureProjection<T, U>(this, GetFailure);
         }
 
         public Validation<NonEmptyList<T>, U> LiftFailNel() {
             return ProjectFailure().LiftFailNel();
+        }
+
+        public static Validation<NonEmptyList<T>, Func<Tuple<U,U>>> operator +(Validation<T,U> va, Validation<T, U> vb) {
+            if(va.IsFailure || vb.IsFailure)
+                return new NonEmptyList<T>(va.ProjectFailure().Concat(vb.ProjectFailure())).ToFailure();
+            else {
+                return new Func<Tuple<U,U>>(()=>Tuple.Create(va.ProjectSuccess().Get(), vb.ProjectSuccess().Get())).ToSuccess();
+            }
         }
     }
 

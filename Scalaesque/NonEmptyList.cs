@@ -22,6 +22,12 @@ namespace Scalesque {
             inner.Add(head);
         }
 
+        public NonEmptyList(IEnumerable<T> enumerable) {
+            enumerable.ForEach(inner.Add);
+            if(inner.Count == 0)
+                throw new ArgumentOutOfRangeException("NonEmptyList initialised with empty IEnumerable<T>");
+        }
+
         public IEnumerator<T> GetEnumerator() {
             return inner.GetEnumerator();
         }

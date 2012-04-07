@@ -10,7 +10,7 @@ namespace Scalesque.Validate {
     public class When_accumulating_failures : UnitTestBase {
         private Validation<string, int> check1;
         private Validation<string, int> check2;
-        private Validation<NonEmptyList<string>, int> mergedChecks;
+        private Validation<NonEmptyList<string>, Func<Tuple<int,int>>> mergedChecks;
 
         public override void Given() {
             check1 = "Some problem 1".ToFailure();
@@ -18,7 +18,7 @@ namespace Scalesque.Validate {
         }
 
         public override void Because() {
-            mergedChecks = check1.LiftFailNel().MergeFailure(check2.LiftFailNel());
+            mergedChecks = check1 + check2;
         }
 
         [Test]

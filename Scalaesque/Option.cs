@@ -10,6 +10,11 @@ namespace Scalesque {
     /// </summary>
     /// <typeparam name="T">&lt;T&gt; The type of the optional value</typeparam>
     public abstract partial class Option<T> : IEnumerable<T> {
+
+        //public static Option<Tuple<T,T>> operator +(Option<T> a, Option<T> b) {
+        //    return a.FlatMap(av => b.Map(bv => Tuple.Create(av, bv)));
+
+        //}
         
         public abstract bool IsEmpty { get; }
         
