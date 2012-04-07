@@ -3,12 +3,12 @@
 namespace Scalesque {
 
     /// <summary>
-    /// A projection of the Right side of an either.
-    /// Provides methods for manipulating the potential right value
+    /// A projection of the Right side of an Either&lt;T,UU&gt;.  Provides methods for manipulating the potential right value.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <typeparam name="U"></typeparam>
-    public sealed class RightProjection<T,U> {
+    /// <typeparam name="T">T The type of the left side value</typeparam>
+    /// <typeparam name="U">U The type of the right side value</typeparam>
+    public sealed class RightProjection<T,U>
+    {
         private readonly Either<T, U> either;
         private readonly Func<U> getRight;
 

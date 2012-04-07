@@ -3,17 +3,17 @@
 namespace Scalesque {
     
     /// <summary>
-    /// Represents a disjoint union of two types. 
+    /// Represents a value which can be either one type T, or another type U.  An Either is a Left or a Right.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <typeparam name="U"></typeparam>
+    /// <typeparam name="T">T The type of the left side value</typeparam>
+    /// <typeparam name="U">U The type of the right side value</typeparam>
     public abstract partial class Either<T, U> {
 
         /// <summary>
         /// Performs a side effect on the contents of the Either
         /// </summary>
-        /// <param name="leftAction">Action{T} Side effect to perform on a Left{T}</param>
-        /// <param name="rightAction">Action{U} Side effect to perform on a Right{U}</param>
+        /// <param name="leftAction">Action&lt;T&gt; Side effect to perform on a Left&lt;T&gt;</param>
+        /// <param name="rightAction">Action&lt;U&gt; Side effect to perform on a Right&lt;U&gt;</param>
         public void ForEach(Action<T> leftAction, Action<U> rightAction) {
             if (IsRight)
                 rightAction(GetRight());
@@ -23,12 +23,12 @@ namespace Scalesque {
         }
 
         /// <summary>
-        /// Unifies the disjoint into a {A}
+        /// Unifies the disjoint into a &lt;A&gt;
         /// </summary>
         /// <typeparam name="T">A The unified type</typeparam>
         /// <typeparam name="A"></typeparam>
-        /// <param name="foldLeft">Func{T,A} Takes a Left{T} and converted to a A</param>
-        /// <param name="foldRight">Func{U,T} Takes a Right{U} and converted to a A</param>
+        /// <param name="foldLeft">Func&lt;T,A&gt; Takes a Left&lt;T&gt; and converted to a A</param>
+        /// <param name="foldRight">Func&lt;U,T&gt; Takes a Right&lt;U&gt; and converted to a A</param>
         /// <returns>A The unified type</returns>
         public A Fold<A>(Func<T, A> foldLeft, Func<U, A> foldRight) {
             if (IsRight)
@@ -64,10 +64,18 @@ namespace Scalesque {
         /// <returns>U</returns>
         protected abstract U GetRight();
 
+        /// <summary>
+        /// Projects right which allows methods for manipulating a potential right value
+        /// </summary>
+        /// <returns>RightProjection&lt;T,U&gt;</returns>
         public RightProjection<T,U> ProjectRight() {
             return new RightProjection<T, U>(this, GetRight);
         }
 
+        /// <summary>
+        /// Projects left which allows methods for manipulating a potential left value
+        /// </summary>
+        /// <returns> LeftProjection&lt;T,U&gt;</returns>
         public LeftProjection<T,U> ProjectLeft() {
             return new LeftProjection<T, U>(this, GetLeft);
         }
@@ -127,21 +135,21 @@ namespace Scalesque {
     public static class Either {
         
         /// <summary>
-        /// Creates a Left{T,U}
+        /// Creates a Left&lt;T,U&gt;
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
-        /// <returns>Left{T} implicitly convertable to Either{T,U}</returns>
+        /// <returns>Left&lt;T&gt; implicitly convertable to Either&lt;T,U&gt;</returns>
         public static Left<T> Left<T>(T value) {
             return new Left<T>(value);
         }
 
         /// <summary>
-        /// Creates a Right{T,U}
+        /// Creates a Right&lt;T,U&gt;
         /// </summary>
         /// <typeparam name="U"></typeparam>
         /// <param name="value"></param>
-        /// <returns>Right{T} implicitly convertable to Either{T,U}</returns>
+        /// <returns>Right&lt;T&gt; implicitly convertable to Either&lt;T,U&gt;</returns>
         public static Right<U> Right<U>(U value) {
             return new Right<U>(value);
         }
