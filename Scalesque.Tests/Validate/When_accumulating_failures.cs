@@ -6,6 +6,7 @@ using FluentAssertions;
 using NUnit.Framework;
 
 namespace Scalesque.Validate {
+
     public class When_accumulating_failures : UnitTestBase {
         private Validation<string, int> check1;
         private Validation<string, int> check2;
