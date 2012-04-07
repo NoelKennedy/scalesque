@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Scalesque {
     
@@ -10,7 +11,7 @@ namespace Scalesque {
     /// <typeparam name="A">The type of the instance you are pattern matching against</typeparam>
     /// <typeparam name="C">The result type of a pattern matching function</typeparam>
     /// <remarks>Pattern matching is a more powerful form of switching.  See http://www.codecommit.com/blog/scala/scala-for-java-refugees-part-4 </remarks>
-    public class PatternMatcher<A,C> : IEnumerable<A> {
+    public class PatternMatcher<A, C> : IEnumerable<Func<A, Option<C>>> {
         private readonly List<Func<A, Option<C>>> list;
 
         public PatternMatcher() {
@@ -78,10 +79,76 @@ namespace Scalesque {
             return Get(pattern).GetOrElse(f);
         }
 
-        public IEnumerator<A> GetEnumerator() {
+        public IEnumerator<Func<A, Option<C>>> GetEnumerator() {
             //need this to allow the object initialisers in c#.  Not sure why c# compiler requires this.
             //http://blogs.msdn.com/b/madst/archive/2006/10/10/what-is-a-collection_3f00_.aspx
-            throw new NotImplementedException(); 
+            return list.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
+    }
+
+
+    /// <summary>
+    /// A side effect pattern matcher
+    /// </summary>
+    /// <typeparam name="A">&lt;A&gt; The type of the pattern you want to match against</typeparam>
+    public class PatternMatcher<A> : IEnumerable<Func<A, Option<Unit>>> {
+        readonly List<Func<A, Option<Unit>>> list;
+
+        public PatternMatcher() {
+            list = new List<Func<A, Option<Unit>>>();
+        }
+
+        /// <summary>
+        /// Pattern matches against the pattern and executes the corresponding side effect if a pattern matches
+        /// </summary>
+        /// <param name="pattern">A the pattern to match against</param>
+        /// <returns>bool  True if a side effect was executed</returns>
+        public bool Match(A pattern) {
+            return list.Any(f => f(pattern).HasValue);
+        }
+
+        /// <summary>
+        /// Adds an extractor pattern
+        /// </summary>
+        /// <typeparam name="B"></typeparam>
+        /// <param name="extractor"></param>
+        /// <param name="handler"></param>
+        public void Add<B>(Func<A,Option<B>> extractor, Action<B> handler) {
+            list.Add(x => extractor(x).Map(b => perform(() => handler(b))));
+        }
+
+        /// <summary>
+        /// Convenience method for performing actions
+        /// </summary>
+        private Unit perform(Action action) {
+            action();
+            return Unit.Value;
+        }
+
+        /// <summary>
+        /// Adds a predicate pattern matcher
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <param name="handler"></param>
+        public void Add(Predicate<A> pattern, Action<A> handler) {
+            list.Add(x=>pattern(x) ? Option.Some(perform(()=>handler(x))) : Option.None());
+        }
+
+        /// <summary>
+        /// Adds an even simpler predicate pattern matcher
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <param name="handler"></param>
+        public void Add(Func<bool> pattern, Action handler) {
+            list.Add(x => pattern() ? Option.Some(perform(handler)) : Option.None());
+        }
+        
+        public IEnumerator<Func<A, Option<Unit>>> GetEnumerator() {
+            return list.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
@@ -89,3 +156,4 @@ namespace Scalesque {
         }
     }
 }
+
