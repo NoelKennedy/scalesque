@@ -81,6 +81,12 @@ namespace Scalesque {
                     return getFailure();
                 return or(validation.ProjectSuccess().Get());
             }
+
+            public Validation<NonEmptyList<T>, U> LiftFailNel() {
+                if (validation.IsFailure)
+                    return new NonEmptyList<T>(getFailure()).ToFailure();
+                return validation.ProjectSuccess().Get().ToSuccess();
+            }
         }
     }
 

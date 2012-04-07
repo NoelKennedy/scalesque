@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using Scalesque.Scalesque;
 
 namespace Scalesque {
 
     public abstract partial class Validation<T, U> {
+
         /// <summary>
         /// Performs a side effect on the contents of the Validation
         /// </summary>
@@ -73,6 +75,10 @@ namespace Scalesque {
         /// <returns> FailureProjection&lt;T,U&gt;</returns>
         public FailureProjection<T, U> ProjectFailure() {
             return new FailureProjection<T, U>(this, GetFailure);
+        }
+
+        public Validation<NonEmptyList<T>, U> LiftFailNel() {
+            return ProjectFailure().LiftFailNel();
         }
     }
 
@@ -167,6 +173,10 @@ namespace Scalesque {
         /// <returns></returns>
         public static Success<T> ToSuccess<T>(this T value) {
             return Success(value);
+        }
+
+        public static Validation<NonEmptyList<T>, U> MergeFailure<T, U>(this Validation<NonEmptyList<T>, U> v1, Validation<NonEmptyList<T>, U> v2) {
+            return v1.ProjectFailure().FlatMap(nel1 => v2.ProjectFailure().Map(nel2 => nel1.Merge(nel2)));
         }
     }
 }

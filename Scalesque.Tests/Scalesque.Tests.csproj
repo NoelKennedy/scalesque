@@ -54,6 +54,7 @@
     <Compile Include="Options\When_applying_a_null.cs" />
     <Compile Include="Options\When_a_value_is_applied.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validate\When_accumulating_failures.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scalaesque\Scalesque.csproj">
