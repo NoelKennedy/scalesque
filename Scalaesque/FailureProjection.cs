@@ -85,11 +85,11 @@ namespace Scalesque {
                 return or(validation.ProjectSuccess().Get());
             }
 
-            public Validation<NonEmptyList<T>, U> LiftFailNel() {
-                if (validation.IsFailure)
-                    return new NonEmptyList<T>(getFailure()).ToFailure();
-                return validation.ProjectSuccess().Get().ToSuccess();
-            }
+            //public Validation<NonEmptyList<T>, U> LiftFailNel() {
+            //    if (validation.IsFailure)
+            //        return new NonEmptyList<T>(getFailure()).ToFailure();
+            //    return validation.ProjectSuccess().Get().ToSuccess();
+            //}
 
             public IEnumerator<T> GetEnumerator() {
                 if (validation.IsFailure)

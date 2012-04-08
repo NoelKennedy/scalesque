@@ -44,6 +44,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\When_constructing_instances_in_different_ways_SList.cs" />
+    <Compile Include="Collections\When_working_with_Nil.cs" />
     <Compile Include="EitherOr\When_extracting_either.cs" />
     <Compile Include="EitherOr\When_composing_with_either.cs" />
     <Compile Include="Patterns\SomeExampleExtractors.cs" />
@@ -55,6 +57,8 @@
     <Compile Include="Options\When_a_value_is_applied.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validate\When_accumulating_failures.cs" />
+    <Compile Include="Validate\When_merging_successes.cs" />
+    <Compile Include="Validate\When_merging_success_and_failure.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scalaesque\Scalesque.csproj">

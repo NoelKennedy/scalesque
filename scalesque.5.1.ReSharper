@@ -35,6 +35,7 @@
         <OverrideDefaultSettings>True</OverrideDefaultSettings>
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="Aa_bb" ElementKind="TypesAndNamespaces">
           <ExtraRule Prefix="" Suffix="" Style="AaBb" />
+          <ExtraRule Prefix="" Suffix="_SList" Style="Aa_bb" />
         </PredefinedRule>
         <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AA_BB" ElementKind="TypeParameters" />

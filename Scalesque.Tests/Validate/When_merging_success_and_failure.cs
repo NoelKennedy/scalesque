@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
 using Scalesque.Collections;
 
-namespace Scalesque.Validate {
+namespace Scalesque.Validate
+{
+    public class When_merging_success_and_failure : UnitTestBase {
+        private const double FirstSuccessValue = 0.1;
+        private const string FailBigTime = "Fail, Big, Time";
 
-    public class When_merging_failures : UnitTestBase {        
         private Validation<string, double> check1;
         private Validation<string, int> check2;
         private Validation<NonEmptySList<string>, Tuple<double, int>> mergedChecks;
 
         public override void Given() {
-            check1 = "Some problem 2".ToFailure();
-            check2 = "Some problem 1".ToFailure();
+            check1 = FirstSuccessValue.ToSuccess();
+            check2 = FailBigTime.ToFailure();
         }
 
         public override void Because() {
@@ -28,11 +30,8 @@ namespace Scalesque.Validate {
         }
 
         [Test]
-        public void It_should_have_accumulated_all_failure_messages() {
-            SList<string> failNel = mergedChecks.ProjectFailure().Get();
-            failNel.Length.Should().Be(2);
-            failNel.Should().Contain("Some problem 1");
-            failNel.Should().Contain("Some problem 2");
+        public void It_should_have_accumulated_failure_message() {
+            mergedChecks.ProjectFailure().Get().Head.Should().Be(FailBigTime);
         }
     }
 }

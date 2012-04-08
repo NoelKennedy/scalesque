@@ -36,7 +36,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections.cs" />
+    <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="Collections\SList.cs" />
     <Compile Include="Either.cs" />
     <Compile Include="Either.Extractors.cs" />
     <Compile Include="Either.implicits.cs" />
@@ -45,7 +46,6 @@
     <Compile Include="General.cs" />
     <Compile Include="LeftProjection.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="NonEmptyList.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="Option.Extractors.cs" />
     <Compile Include="Option.implicits.cs" />

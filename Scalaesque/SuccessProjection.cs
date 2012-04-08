@@ -7,7 +7,7 @@ namespace Scalesque {
     /// </summary>
     /// <typeparam name="T">T The type of the failure side value</typeparam>
     /// <typeparam name="U">U The type of the success side value</typeparam>
-    public sealed class SuccessProjection<T, U> {
+    public sealed class SuccessProjection<T, U>  {
         private readonly Validation<T, U> validation;
         private readonly Func<U> getSuccess;
 

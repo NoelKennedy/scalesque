@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Scalesque {
 
-    public static class Collections
+    public static class CollectionExtensions
     {
         /// <summary>
         /// Folds a collection of instances of type &lt;T&gt; into a single instance of type &lt;U&gt;
