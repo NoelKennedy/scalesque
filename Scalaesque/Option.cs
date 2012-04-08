@@ -68,6 +68,19 @@ namespace Scalesque {
             return f();
         }
 
+        /// <summary>
+        /// Returns result of ifEmpty if is <see cref="None{T}"/> or passes value to f and returns result
+        /// </summary>
+        /// <typeparam name="Y"></typeparam>
+        /// <param name="ifEmpty"></param>
+        /// <param name="f"></param>
+        /// <returns>Y</returns>
+        public Y Fold<Y>(Func<Y> ifEmpty, Func<T,Y> f) {
+            if (IsEmpty)
+                return ifEmpty();
+            return f(Get());
+        }
+
         public IEnumerator<T> GetEnumerator() {
             if (IsEmpty)
                 return new List<T>().GetEnumerator();
