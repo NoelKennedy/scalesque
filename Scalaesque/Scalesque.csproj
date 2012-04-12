@@ -42,7 +42,6 @@
     <Compile Include="Either.Extractors.cs" />
     <Compile Include="Either.implicits.cs" />
     <Compile Include="FailureProjection.cs" />
-    <Compile Include="ForComprehension.cs" />
     <Compile Include="General.cs" />
     <Compile Include="LeftProjection.cs" />
     <Compile Include="Map.cs" />

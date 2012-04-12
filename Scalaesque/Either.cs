@@ -173,5 +173,21 @@ namespace Scalesque {
         public static Right<T> ToRight<T>(this T value) {
             return Right(value);
         }
+
+        /// <summary>
+        /// Flattens an Either&lt;T,Either&lt;T,U&gt;&gt; through the right side to an Either&lt;T,U&gt;
+        /// </summary>
+        /// <returns>Either&lt;T,U&gt</returns>
+        public static Either<T,U> JoinRight<T,U>(this Either<T,Either<T,U>> either) {
+            return either.ProjectRight().FlatMap(x => x);
+        }
+
+        /// <summary>
+        /// Flattens an Either&lt;Either&lt;T,U&gt;, U&gt; through the left side to an Either&lt;T,U&gt;
+        /// </summary>
+        /// <returns>Either&lt;T,U&gt</returns>
+        public static Either<T,U> JoinLeft<T,U>(this Either<Either<T,U>, U> either){
+            return either.ProjectLeft().FlatMap(x => x);
+        }
     }
 }

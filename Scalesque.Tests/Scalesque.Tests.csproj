@@ -48,6 +48,7 @@
     <Compile Include="Collections\When_working_with_Nil.cs" />
     <Compile Include="EitherOr\When_extracting_either.cs" />
     <Compile Include="EitherOr\When_composing_with_either.cs" />
+    <Compile Include="EitherOr\When_joining_either.cs" />
     <Compile Include="Patterns\SomeExampleExtractors.cs" />
     <Compile Include="Patterns\When_doing_more_complicated_extractions.cs" />
     <Compile Include="Patterns\When_doing_simple_pattern_matching.cs" />
