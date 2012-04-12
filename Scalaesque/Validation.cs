@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scalesque.Collections;
-using Scalesque.Scalesque;
 
 namespace Scalesque {
 
