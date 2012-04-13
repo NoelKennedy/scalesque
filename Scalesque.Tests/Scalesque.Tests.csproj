@@ -52,6 +52,7 @@
     <Compile Include="Patterns\SomeExampleExtractors.cs" />
     <Compile Include="Patterns\When_doing_more_complicated_extractions.cs" />
     <Compile Include="Patterns\When_doing_simple_pattern_matching.cs" />
+    <Compile Include="Patterns\When_matching_literals.cs" />
     <Compile Include="Patterns\When_pattern_matching_option.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="Options\When_applying_a_null.cs" />

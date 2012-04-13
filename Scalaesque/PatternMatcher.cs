@@ -64,6 +64,15 @@ namespace Scalesque {
         }
 
         /// <summary>
+        /// Adds a pattern which matches literals
+        /// </summary>
+        /// <param name="literal"></param>
+        /// <param name="handler"></param>
+        public void Add(A literal, Func<C> handler) {
+            Add(x=>literal.Equals(x), handler);
+        }
+
+        /// <summary>
         /// Checks the pattern against the pattern matchers.  The first extractor which matches the pattern is the result.  If no patterns match, the result is None{T}
         /// </summary>
         /// <param name="pattern">A</param>
@@ -145,6 +154,15 @@ namespace Scalesque {
         /// <param name="handler"></param>
         public void Add(Func<bool> pattern, Action handler) {
             list.Add(x => pattern() ? Option.Some(perform(handler)) : Option.None());
+        }
+
+        /// <summary>
+        /// Adds a pattern which matches literals
+        /// </summary>
+        /// <param name="literal"></param>
+        /// <param name="handler"></param>
+        public void Add(A literal, Action handler) {
+            Add(x => literal.Equals(x), x=> handler());
         }
         
         public IEnumerator<Func<A, Option<Unit>>> GetEnumerator() {
