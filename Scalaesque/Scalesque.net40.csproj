@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{13179235-B77A-4FD4-A7FE-2DC66529F4E0}</ProjectGuid>
+    <ProjectGuid>{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Scalesque</RootNamespace>
-    <AssemblyName>Scalesque.Tests</AssemblyName>
+    <AssemblyName>Scalesque.net40</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,44 +32,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.1.7.1.1\Lib\net40\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\When_constructing_instances_in_different_ways_SList.cs" />
-    <Compile Include="Collections\When_working_with_Nil.cs" />
-    <Compile Include="EitherOr\When_extracting_either.cs" />
-    <Compile Include="EitherOr\When_composing_with_either.cs" />
-    <Compile Include="EitherOr\When_joining_either.cs" />
-    <Compile Include="Patterns\SomeExampleExtractors.cs" />
-    <Compile Include="Patterns\When_doing_more_complicated_extractions.cs" />
-    <Compile Include="Patterns\When_doing_simple_pattern_matching.cs" />
-    <Compile Include="Patterns\When_matching_literals.cs" />
-    <Compile Include="Patterns\When_pattern_matching_option.cs" />
-    <Compile Include="UnitTestBase.cs" />
-    <Compile Include="Options\When_applying_a_null.cs" />
-    <Compile Include="Options\When_a_value_is_applied.cs" />
+    <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="Collections\SList.cs" />
+    <Compile Include="Either.cs" />
+    <Compile Include="Either.Extractors.cs" />
+    <Compile Include="Either.implicits.cs" />
+    <Compile Include="FailureProjection.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="LeftProjection.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Option.cs" />
+    <Compile Include="Option.Extractors.cs" />
+    <Compile Include="Option.implicits.cs" />
+    <Compile Include="PatternMatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validate\When_accumulating_failures.cs" />
-    <Compile Include="Validate\When_merging_successes.cs" />
-    <Compile Include="Validate\When_merging_success_and_failure.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Scalaesque\Scalesque.net40.csproj">
-      <Project>{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}</Project>
-      <Name>Scalesque.net40</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="RightProjection.cs" />
+    <Compile Include="SuccessProjection.cs" />
+    <Compile Include="Tuple.cs" />
+    <Compile Include="Unit.cs" />
+    <Compile Include="Validation.cs" />
+    <Compile Include="Validation.implicits.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

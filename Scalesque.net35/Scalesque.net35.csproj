@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2CCF9C47-88AB-494C-9B10-34D25FFEB09A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Scalesque</RootNamespace>
+    <AssemblyName>Scalesque.net35</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Scalaesque\CollectionExtensions.cs">
+      <Link>CollectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Collections\SList.cs">
+      <Link>Collections\SList.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Either.cs">
+      <Link>Either.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Either.Extractors.cs">
+      <Link>Either.Extractors.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Either.implicits.cs">
+      <Link>Either.implicits.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\FailureProjection.cs">
+      <Link>FailureProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\General.cs">
+      <Link>General.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\LeftProjection.cs">
+      <Link>LeftProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Map.cs">
+      <Link>Map.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Option.cs">
+      <Link>Option.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Option.Extractors.cs">
+      <Link>Option.Extractors.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Option.implicits.cs">
+      <Link>Option.implicits.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\PatternMatcher.cs">
+      <Link>PatternMatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\RightProjection.cs">
+      <Link>RightProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\SuccessProjection.cs">
+      <Link>SuccessProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Tuple.cs">
+      <Link>Tuple.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Unit.cs">
+      <Link>Unit.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Validation.cs">
+      <Link>Validation.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalaesque\Validation.implicits.cs">
+      <Link>Validation.implicits.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

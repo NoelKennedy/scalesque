@@ -195,7 +195,7 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y>> Combine<T, U, Y>(this Validation<NonEmptySList<T>, Tuple<U>> first, Validation<NonEmptySList<T>, Tuple<Y>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = CollectionExtensions.Flatten(listOfLists);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             return Tuple.Create(first.ProjectSuccess().Get().Item1, other.ProjectSuccess().Get().Item1).ToSuccess();
