@@ -58,7 +58,7 @@ namespace Scalesque.Collections {
     /// An immutable linked list guaranteed to not be empty.  Terminates in <see cref="Nil{T}"/>.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class NonEmptySList<T> : SList<T> {
+    public class NonEmptySList<T> : SList<T>, IEnumerable<T> {
         private readonly T value;
         private readonly SList<T> next;
         private readonly int length;

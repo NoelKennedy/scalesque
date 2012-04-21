@@ -186,7 +186,7 @@ namespace Scalesque {
         public static Success<T> ToSuccess<T>(this T value) {
             return Success(value);
         }
-
+        
         /// <summary>
         /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
         /// </summary>
@@ -195,12 +195,13 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y>> Combine<T, U, Y>(this Validation<NonEmptySList<T>, Tuple<U>> first, Validation<NonEmptySList<T>, Tuple<Y>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = CollectionExtensions.Flatten(listOfLists);
+                IEnumerable<T> flattened = listOfLists.Flatten();
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             return Tuple.Create(first.ProjectSuccess().Get().Item1, other.ProjectSuccess().Get().Item1).ToSuccess();
         }
 
+        /*
 
         /// <summary>
         /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
@@ -292,5 +293,7 @@ namespace Scalesque {
             F otherItem = other.ProjectSuccess().Get().Item1;
             return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, firstSuccess.Item3, firstSuccess.Item4, firstSuccess.Item5, firstSuccess.Item6, firstSuccess.Item7, otherItem).ToSuccess();
         }
+         * 
+         * */
     }
 }
