@@ -63,13 +63,13 @@
     <Compile Include="Validate\When_merging_success_and_failure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Scalaesque\Scalesque.net40.csproj">
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Scalesque.net40\Scalesque.net40.csproj">
       <Project>{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}</Project>
       <Name>Scalesque.net40</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

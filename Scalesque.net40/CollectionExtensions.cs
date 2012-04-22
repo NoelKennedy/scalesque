@@ -58,9 +58,20 @@ namespace Scalesque {
             while (en.MoveNext()) yield return en.Current;
         }
 
+
+#if Covariant
+        /// <summary>
+        /// Flattens an IEnumerable&lt;IEnumerable&lt;T&gt;&gt; into IEnumerable&lt;T&gt;
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        /// <remarks>Requires a version of c# that has covariance for generic types c# >= 4.0</remarks>
         public static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> source) {
             return source.SelectMany(x => x);
         }
+#endif
+
 
         /// <summary>
         /// Performs a side effect on each member of a collection

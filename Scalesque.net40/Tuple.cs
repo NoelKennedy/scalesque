@@ -1,7 +1,10 @@
-﻿
+﻿namespace Scalesque {
 
-namespace Scalesque {
+#if NoFrameworkTuples
 
+    /// <summary>
+    /// Provides tuples in versions of the .net Framework that don't have them in the base library
+    /// </summary>
     public static class Tuple {
         public static Tuple<T1> Create<T1>(T1 item1) {
             return new Tuple<T1>(item1);
@@ -110,7 +113,7 @@ namespace Scalesque {
             Item3 = item3;
             Item4 = item4;
             Item5 = item5;
-            this.Item6 = item6;
+            Item6 = item6;
         }
     }
 
@@ -152,7 +155,9 @@ namespace Scalesque {
             Item5 = item5;
             Item6 = item6;
             Item7 = item7;
-            this.Item8 = item8;
+            Item8 = item8;
         }
     }
+
+#endif
 }

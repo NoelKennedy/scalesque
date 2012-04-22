@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalesque.net40", "Scalaesque\Scalesque.net40.csproj", "{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalesque.Tests", "Scalesque.Tests\Scalesque.Tests.csproj", "{13179235-B77A-4FD4-A7FE-2DC66529F4E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{134AC04D-E7FE-423D-AE87-76C05CF88995}"
@@ -12,16 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{134AC0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalesque.net35", "Scalesque.net35\Scalesque.net35.csproj", "{2CCF9C47-88AB-494C-9B10-34D25FFEB09A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalesque.net40", "Scalesque.net40\Scalesque.net40.csproj", "{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13179235-B77A-4FD4-A7FE-2DC66529F4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13179235-B77A-4FD4-A7FE-2DC66529F4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13179235-B77A-4FD4-A7FE-2DC66529F4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,6 +26,10 @@ Global
 		{2CCF9C47-88AB-494C-9B10-34D25FFEB09A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CCF9C47-88AB-494C-9B10-34D25FFEB09A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CCF9C47-88AB-494C-9B10-34D25FFEB09A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

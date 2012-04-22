@@ -195,13 +195,13 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y>> Combine<T, U, Y>(this Validation<NonEmptySList<T>, Tuple<U>> first, Validation<NonEmptySList<T>, Tuple<Y>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = listOfLists.SelectMany(x => x);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             return Tuple.Create(first.ProjectSuccess().Get().Item1, other.ProjectSuccess().Get().Item1).ToSuccess();
         }
 
-        /*
+        
 
         /// <summary>
         /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
@@ -211,7 +211,7 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y, A>> Combine<T, U, Y, A>(this Validation<NonEmptySList<T>, Tuple<U,Y>> first, Validation<NonEmptySList<T>, Tuple<A>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             var firstSuccess = first.ProjectSuccess().Get();
@@ -226,7 +226,7 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B>> Combine<T, U, Y, A, B>(this Validation<NonEmptySList<T>, Tuple<U, Y, A>> first, Validation<NonEmptySList<T>, Tuple<B>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             var firstSuccess = first.ProjectSuccess().Get();
@@ -241,7 +241,7 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C>> Combine<T, U, Y, A, B, C>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B>> first, Validation<NonEmptySList<T>, Tuple<C>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             var firstSuccess = first.ProjectSuccess().Get();
@@ -256,7 +256,7 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D>> Combine<T, U, Y, A, B, C, D>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C>> first, Validation<NonEmptySList<T>, Tuple<D>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             var firstSuccess = first.ProjectSuccess().Get();
@@ -271,7 +271,7 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D, E>> Combine<T, U, Y, A, B, C, D, E>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D>> first, Validation<NonEmptySList<T>, Tuple<E>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             var firstSuccess = first.ProjectSuccess().Get();
@@ -286,14 +286,13 @@ namespace Scalesque {
         public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D, E, Tuple<F>>> Combine<T, U, Y, A, B, C, D, E, F>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D, E>> first, Validation<NonEmptySList<T>, Tuple<F>> other) {
             if (first.IsFailure || other.IsFailure) {
                 IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.Flatten();
+                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
                 return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
             }
             var firstSuccess = first.ProjectSuccess().Get();
             F otherItem = other.ProjectSuccess().Get().Item1;
             return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, firstSuccess.Item3, firstSuccess.Item4, firstSuccess.Item5, firstSuccess.Item6, firstSuccess.Item7, otherItem).ToSuccess();
         }
-         * 
-         * */
+      
     }
 }

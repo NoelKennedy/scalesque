@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NoFrameworkTuples</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -36,64 +36,64 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Scalaesque\CollectionExtensions.cs">
+    <Compile Include="..\Scalesque.net40\CollectionExtensions.cs">
       <Link>CollectionExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Collections\SList.cs">
+    <Compile Include="..\Scalesque.net40\Collections\SList.cs">
       <Link>Collections\SList.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Either.cs">
+    <Compile Include="..\Scalesque.net40\Either.cs">
       <Link>Either.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Either.Extractors.cs">
+    <Compile Include="..\Scalesque.net40\Either.Extractors.cs">
       <Link>Either.Extractors.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Either.implicits.cs">
+    <Compile Include="..\Scalesque.net40\Either.implicits.cs">
       <Link>Either.implicits.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\FailureProjection.cs">
+    <Compile Include="..\Scalesque.net40\FailureProjection.cs">
       <Link>FailureProjection.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\General.cs">
+    <Compile Include="..\Scalesque.net40\General.cs">
       <Link>General.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\LeftProjection.cs">
+    <Compile Include="..\Scalesque.net40\LeftProjection.cs">
       <Link>LeftProjection.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Map.cs">
+    <Compile Include="..\Scalesque.net40\Map.cs">
       <Link>Map.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Option.cs">
+    <Compile Include="..\Scalesque.net40\Option.cs">
       <Link>Option.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Option.Extractors.cs">
+    <Compile Include="..\Scalesque.net40\Option.Extractors.cs">
       <Link>Option.Extractors.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Option.implicits.cs">
+    <Compile Include="..\Scalesque.net40\Option.implicits.cs">
       <Link>Option.implicits.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\PatternMatcher.cs">
+    <Compile Include="..\Scalesque.net40\PatternMatcher.cs">
       <Link>PatternMatcher.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Properties\AssemblyInfo.cs">
+    <Compile Include="..\Scalesque.net40\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\RightProjection.cs">
+    <Compile Include="..\Scalesque.net40\RightProjection.cs">
       <Link>RightProjection.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\SuccessProjection.cs">
+    <Compile Include="..\Scalesque.net40\SuccessProjection.cs">
       <Link>SuccessProjection.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Tuple.cs">
+    <Compile Include="..\Scalesque.net40\Tuple.cs">
       <Link>Tuple.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Unit.cs">
+    <Compile Include="..\Scalesque.net40\Unit.cs">
       <Link>Unit.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Validation.cs">
+    <Compile Include="..\Scalesque.net40\Validation.cs">
       <Link>Validation.cs</Link>
     </Compile>
-    <Compile Include="..\Scalaesque\Validation.implicits.cs">
+    <Compile Include="..\Scalesque.net40\Validation.implicits.cs">
       <Link>Validation.implicits.cs</Link>
     </Compile>
   </ItemGroup>
