@@ -49,7 +49,7 @@
 		<br/>
 		<h4>Validation&lt;T,U&gt; : Compose logic without having to control progam logic</h4>
 		<p>Scalesque validation allows you to compose a series of validating checks, without having 
-		to implement any control flow.  It can behave in two different ways.  You can have it fail fast mode, and give you a successful result or the first failure.  Or you can chain your validations so you either get a tuple of all the successful checks or a non empty list of strongly typed validation failures.</p>  
+		to implement any control flow.  	When the last check is performed you either get a Success&ltU&gt; or a non empty list of validation failures.  Without changing your validating functions, you can change your logic, you can change your control of flow to fail on the first check.  You either get a successful validation result, or the first failure.  All of this is implemented via statically typed compile checks but without having to write any control flow logic yourself.</p>  
 		
 		
       </section>
