@@ -70,27 +70,26 @@
      	use static type system and compiler to improve correctness rather than programmer control flow, easier to reasoon about 
      	</p>
      	<h5>option</h5>
-     	<p>abstracting querystring. making a wrapper on qs.
-     	start with .net dictionary, tryget malarky.
+     	<p>abstraction of a querystring. making a wrapper on qs.
      	programmer calls get "blah" return Option
      	talk about null
      	working with the value as if it exists, but not caring if it doesnt until we need to know
      	getOrElse
-     	compiler forces correctness, no suprises, no control forking, easier to reason about.
+     	compiler forces correctness, no surprises, no control forking, easier to reason about.
+ 
      	<h5>I need options people</h5>
      	<p>producing your own options - apply, .Some(), none()
-     	help, this library don't place nice - opt(), or Option.apply()</p>
-     	
-     	
-     	
+     	help, this library don't place nice - opt(), or Option.apply()
+     	dictionary wrappers, compare tryget malarky and get + getOrElse.
      	</p>
+     	
      	<h5>FlatMap that s**t</h5>
      	i dont get trapped inside a monad.
      	show what happens when you get two options chaining.  
      	want either a some, or none.  
      	flatmap.  look at signature.
      	intuition, russian dolls. again, we use the compiler to show correctness.
-     	show equivalent logic for .net dictionary getting 2 values.
+     	show equivalent logic for .net dictionary getting 2 values. and then that scalaz spaceship method
      	<h5>Either</h5>
      	<p>It is absurd to divide people into good and bad. People are either charming or tedious.
 Oscar Wilde</p>
