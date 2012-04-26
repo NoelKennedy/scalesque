@@ -89,7 +89,7 @@
      	want either a some, or none.  
      	flatmap.  look at signature.
      	intuition, russian dolls. again, we use the compiler to show correctness.
-     	show equivalent logic for .net dictionary getting 2 values.
+     	show equivalent logic for .net dictionary getting 2 values. and then that scalaz spaceship method
      	<h5>Either</h5>
      	<p>It is absurd to divide people into good and bad. People are either charming or tedious.
 Oscar Wilde</p>

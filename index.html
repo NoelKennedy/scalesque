@@ -94,9 +94,11 @@
      	<p>It is absurd to divide people into good and bad. People are either charming or tedious.
 Oscar Wilde</p>
 		oscar certainly knew a thing or two about disjoint unions, and through his intuition we can now give a function a choice on its return type.
-     		scenario is a request for a url.  
-     	request handler calls router to check a url, router returns controller or 404. 
-     	request handler projects right to controller, and calls process.
+     scenario is a request for a url. 
+     function can choose its return type.  
+     	request handler calls router to check a url, router returns accepter or 404.
+     	accepter returns controller or unsupported 
+     	request handler projects right to controller, and calls process. 
      	all program states handled by type system, no invisible forking. 
      	assumption of happy path until we need to perform union. but it is at a point when we have control over sensible defaults.  
      	conventional to treat right as happy path.
