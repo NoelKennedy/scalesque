@@ -33,7 +33,7 @@
       <p>We ask the abstraction for a particular key, and it returns Option&lt;string&gt; which represents the value, if it is there.  </p>
       <h4>Option&lt;string&gt;, Some&lt;T&gt; and None&lt;T&gt;</h4>
       <p>In fact, Option&lt;T&gt; is an abtract class.  It has two subclasses, Some&lt;T&gt; and None&lt;T&gt;.  If our Option&lt;T&gt; is actually a Some&lt;T&gt; we know the reference within it is an actual reference to an object.  Alternatively, if we have a None&lt;T&gt;, we know we have a missing value.</p>
-      <p>The temptation here, once we have an instance of Option&lt;T&gt;, might be to perform a type cast, or to ask the Option&lt;T&gt; if it has a value via it's <b>xxx what prop is it?</b>.  However, this doesn't actually move us on that far from just nulls.  Ok, we would have a better way of representing the potential of missing value than we had with null.  We know that developers using our api can't be caught out by null references, as their code now won't even compile without them dealing with Option&lt;T&gt;.  However, we have given them much more than a heads up, we have given them the ability to use the type system to simplify their code.</p>
+      <p>The temptation here, once we have an instance of Option&lt;T&gt;, might be to perform a type cast, or to ask the Option&lt;T&gt; if it has a value via it's HasValue property.  However, this doesn't actually move us on that far from just nulls.  Ok, we would have a better way of representing the potential of missing value than we had with null.  We know that developers using our api can't be caught out by null references, as their code now won't even compile without them dealing with Option&lt;T&gt;.  In fact, by using Option&lt;T&gt; we have given them much more than a heads up, we have given them the ability to use the type system to simplify their code.</p>
       <h4>Acting as though nothing is wrong</h4>
       <p>Once we have an Option&lt;T&gt;, we perform actions on it <i>as if it had an inner value, and not care if it doesn't.</i>  To most OO programmers this is downright odd state of affairs, and a strange way of thinking about code.  Take a deep breath, here comes the <a href="http://en.wikipedia.org/wiki/Red_pill_and_blue_pill">red pill</a>.</p>  
       <p>In terms of the types in scalesque, we are going to assume that our Option&lt;T&gt; is actually a, Some&lt;T&gt;, and ignore the fact that it might actually be a None&lt;T&gt;. Once we are at a position in our code to actually require a value, we will deal with the fact we might have had a None&lt;T&gt; all along.</p>
@@ -43,14 +43,6 @@
       
       <h4>Next up</h4>
       <p>So far we have only shown how to work with an Option&lt;T&gt; once we have one.  The <a href="walkthrough-option-creation.html">next section stays with Option&lt;T&gt;</a> and shows you how to create instances of Some&lt;T&gt; or Nonce&lt;T&gt; yourself.</p>
-
-     	<p>abstraction of a querystring. making a wrapper on qs.
-     	programmer calls get "blah" return Option
-     	talk about null
-     	working with the value as if it exists, but not caring if it doesnt until we need to know
-     	getOrElse
-     	compiler forces correctness, no surprises, no control forking, easier to reason about.
- 	
       </section>
     </div>
 

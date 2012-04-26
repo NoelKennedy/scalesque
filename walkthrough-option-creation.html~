@@ -39,7 +39,7 @@
       <div><i>dictionary try get malarky vs scalesque extension method</i></div>
 
 		<h4>Next up</h4>
-		<p>Unfortunately, we are going to stick with Option&ltT&gt; for the <a href="walkthrough-flatmap.html">next section</a> as well.  Count yourself lucky we have had several pages on functional programming and I haven't even mentioned monads yet....Woops!</p>
+		<p>Unfortunately, we are going to stick with Option&ltT&gt; for the next section as well.  Count yourself lucky we have had several pages on functional programming and I haven't even mentioned monads yet....Woops!</p>
       </section>
     </div>
 
