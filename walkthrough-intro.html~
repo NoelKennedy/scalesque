@@ -23,11 +23,11 @@
       <section id="main_content">
      
       <h3>Introduction</h3>
-      <p>To demonstrate scalesque we will be looking how we could use it to write parts of a web server.  Functional programming favours immutable objects, which makes it much easier to write to highly threaded applications like web servers.  If data can't be changed you don't need to write as much synchronisation code when accessing it.</p>  
-      <p>Functional programming also favours functions that have no side effects.  A side effect would be something like changing the value of a field of a class in a method.  It becomes harder understand your code if it performs subtle side effects.  Functional programming also favours pure methods.  A method is pure if it always returns the same result given the same inputs.  Addition is a pure method, DateTime.GetDate() isn't.  The more pure methods you can use, the easier your code will be to follow.</p>
-      <p>Scala and scalesque also make heavy use of the type system and compiler to check correctness of programs.  The compiler can't guarantee your program works as you want of course, but we will see later that the type system and compiler can be used instead of standard control flow language statements like 'if' to improve the correctness of your programs. If you can reduce the numbers branching statements in your programs, it becomes easier to understand them, and to see that they are correct.</p>
+      <p>To demonstrate scalesque we will be looking how we could use it to write parts of a web server.  Functional programming favours immutable objects, which makes it much easier to write to highly threaded applications like web servers.  If data can't be changed you don't need to synchronise threads accessing it.</p>  
+      <p>Functional programming also favours functions that have no side effects.  A side effect would be something like changing the value of a field of a class in a method.  It becomes harder understand your methods if they have side effects.  Functional programming also favours pure methods.  A method is pure if it has no side effects and always returns the same result given the same inputs.  Addition is a pure method, DateTime.GetDate() isn't.  The more pure methods you can use, the easier your code will be to follow and reason about.</p>
+      <p>Scala and scalesque also make use of the type system and compiler to check program logic.  The compiler can't guarantee your program works as you want of course, but we will see later that the type system and compiler can be used instead of standard control flow language statements like 'if'.  Since you don't need to follow any control flow logic through your code, it is easier to see that your program is correct.</p>
       
-      <h4>Enough blah</h4>
+      <h4>Enough already, show me code</h4>
       <p>The <a href="walkthrough-option.html">next section</a> covers our first class in scalesque, Option&lt;T&gt;</p>
       </section>
     </div>
