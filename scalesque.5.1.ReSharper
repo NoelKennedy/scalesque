@@ -38,7 +38,9 @@
           <ExtraRule Prefix="" Suffix="_SList" Style="Aa_bb" />
         </PredefinedRule>
         <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
-        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AA_BB" ElementKind="TypeParameters" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AA_BB" ElementKind="TypeParameters">
+          <ExtraRule Prefix="T" Suffix="" Style="AaBb" />
+        </PredefinedRule>
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent">
           <ExtraRule Prefix="" Suffix="apply" Style="aa_bb" />
           <ExtraRule Prefix="" Suffix="" Style="Aa_bb" />

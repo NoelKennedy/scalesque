@@ -49,6 +49,7 @@
     <Compile Include="EitherOr\When_extracting_either.cs" />
     <Compile Include="EitherOr\When_composing_with_either.cs" />
     <Compile Include="EitherOr\When_joining_either.cs" />
+    <Compile Include="FunctionApplication\When_creating_partially_applied_functions.cs" />
     <Compile Include="Patterns\SomeExampleExtractors.cs" />
     <Compile Include="Patterns\When_doing_more_complicated_extractions.cs" />
     <Compile Include="Patterns\When_doing_simple_pattern_matching.cs" />
