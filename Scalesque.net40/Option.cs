@@ -38,6 +38,9 @@ namespace Scalesque {
                 return None<U>.apply();
             return new Some<U>(f(Get()));
         }
+        //public X Map<U, X>(Func<T, U> f) where X : Functor<U> {
+            
+        //}
 
         /// <summary>
         /// Gets the value if it exists, else a default value
@@ -86,24 +89,8 @@ namespace Scalesque {
             return f(Get());
         }
 
-        public Option<Tuple<T,U>> Merge<U>(Option<U> other) {
-            return FlatMap(a => other.Map(b => Tuple.Create(a, b)));
-        }
-
-        public static Option<B> Applicative<A,B>(Option<Func<A,B>> f, Option<A> a) {
-            return f.FlatMap(a.Map);
-        }
-
-        public Option<TResult> Merge<U, X, TResult>(Option<U> other1, Option<X> other2, Func<T,U,X, TResult> f) {
-            Func<T, Func<U, Func<X, TResult>>> curry = Curry(f);
-
-            var mbCurry = Map(curry);
-            return Applicative(Applicative(mbCurry, other1), other2);
-
-        }
-
-        private Func<T, Func<U, Func<X, TResult>>> Curry<U, X, TResult>(Func<T, U, X, TResult> f) {
-            return t => u => x => f(t, u, x);
+        public Option<U> Applicative<U>(Option<Func<T,U>> tf) {
+            return tf.FlatMap(this.Map);
         }
 
         public IEnumerator<T> GetEnumerator() {
@@ -218,6 +205,26 @@ namespace Scalesque {
         /// <returns></returns>
         public static Option<T> Some<T>(T value) {
             return apply(value);
+        }
+
+        /// <summary>
+        /// Constructs a Some&ltT&gt; from a T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Some<T> ToSome<T>(this T value) {
+            return new Some<T>(value);
+        }
+
+        /// <summary>
+        /// Constructs a None&ltT&gt; from a T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Option<T> ToNone<T>(this T value) {
+            return None();
         }
     }
 }

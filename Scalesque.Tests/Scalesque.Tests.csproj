@@ -45,11 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\When_constructing_instances_in_different_ways_SList.cs" />
+    <Compile Include="Collections\When_using_nel_as_semi_join.cs" />
     <Compile Include="Collections\When_working_with_Nil.cs" />
     <Compile Include="EitherOr\When_extracting_either.cs" />
     <Compile Include="EitherOr\When_composing_with_either.cs" />
     <Compile Include="EitherOr\When_joining_either.cs" />
     <Compile Include="FunctionApplication\When_creating_partially_applied_functions.cs" />
+    <Compile Include="Options\When_using_applicative_functors.cs" />
     <Compile Include="Patterns\SomeExampleExtractors.cs" />
     <Compile Include="Patterns\When_doing_more_complicated_extractions.cs" />
     <Compile Include="Patterns\When_doing_simple_pattern_matching.cs" />
@@ -61,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validate\When_accumulating_failures.cs" />
     <Compile Include="Validate\When_merging_successes.cs" />
-    <Compile Include="Validate\When_merging_success_and_failure.cs" />
+    <Compile Include="Validate\When_working_with_multiple_validations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -71,6 +73,9 @@
       <Project>{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}</Project>
       <Name>Scalesque.net40</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FunctorApplica\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

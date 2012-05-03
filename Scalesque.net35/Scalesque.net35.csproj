@@ -39,6 +39,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Scalesque.net40\ApplicativeFunctorOption.cs">
+      <Link>ApplicativeFunctorOption.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalesque.net40\ApplicativeFunctorOther.cs">
+      <Link>ApplicativeFunctorOther.cs</Link>
+    </Compile>
     <Compile Include="..\Scalesque.net40\CollectionExtensions.cs">
       <Link>CollectionExtensions.cs</Link>
     </Compile>
@@ -59,6 +65,9 @@
     </Compile>
     <Compile Include="..\Scalesque.net40\General.cs">
       <Link>General.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalesque.net40\ISemiJoin.cs">
+      <Link>ISemiJoin.cs</Link>
     </Compile>
     <Compile Include="..\Scalesque.net40\LeftProjection.cs">
       <Link>LeftProjection.cs</Link>
@@ -99,8 +108,14 @@
     <Compile Include="..\Scalesque.net40\Validation.cs">
       <Link>Validation.cs</Link>
     </Compile>
+    <Compile Include="..\Scalesque.net40\Validation.Extractors.cs">
+      <Link>Validation.Extractors.cs</Link>
+    </Compile>
     <Compile Include="..\Scalesque.net40\Validation.implicits.cs">
       <Link>Validation.implicits.cs</Link>
+    </Compile>
+    <Compile Include="..\Scalesque.net40\YumCurry.cs">
+      <Link>YumCurry.cs</Link>
     </Compile>
     <Compile Include="Funcs.cs" />
   </ItemGroup>

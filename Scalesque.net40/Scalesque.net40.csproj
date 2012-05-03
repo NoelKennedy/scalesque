@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Covarient</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Covariant</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -37,8 +37,23 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicativeFunctorOption.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicativeFunctorOption.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicativeFunctorOther.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicativeFunctorOther.tt</DependentUpon>
+    </Compile>
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Collections\SList.cs" />
+    <Compile Include="Expressions.cs" />
+    <Compile Include="ISemiJoin.cs" />
+    <Compile Include="OptionApplicativeFunctor.cs" />
+    <Compile Include="Validation.Extractors.cs" />
+    <Compile Include="YumCurry.cs" />
     <Compile Include="Either.cs" />
     <Compile Include="Either.Extractors.cs" />
     <Compile Include="Either.implicits.cs" />
@@ -64,6 +79,14 @@
     <Compile Include="Validation.implicits.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApplicativeFunctorOption.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApplicativeFunctorOption.cs</LastGenOutput>
+    </None>
+    <None Include="ApplicativeFunctorOther.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApplicativeFunctorOther.cs</LastGenOutput>
+    </None>
     <None Include="PartialFunctionsGen.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PartialFunctionsGen.generated.cs</LastGenOutput>

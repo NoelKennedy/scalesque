@@ -1,5 +1,6 @@
 ﻿namespace Scalesque {
-    public abstract partial class Validation<T,U> {
+    public abstract partial class Validation<T,U>
+    {
 
         //this simulates scala's type inference 
         public static implicit operator Validation<T, U>(Failure<T> converted) {

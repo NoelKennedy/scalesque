@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Scalesque.Collections;
 
 namespace Scalesque {
-
+  
     /// <summary>
     /// A monad representing either success or failure during validation
     /// </summary>
     /// <typeparam name="T">T The type of failure</typeparam>
     /// <typeparam name="U">U The type of success</typeparam>
-    public abstract partial class Validation<T, U> {
-
+    public abstract partial class Validation<T, U>
+    {
         /// <summary>
         /// Performs a side effect on the contents of the Validation
         /// </summary>
@@ -84,13 +82,31 @@ namespace Scalesque {
         }
 
         /// <summary>
-        /// Lifts the Validation so it can be combined with another instance
+        /// Lifts the failure side of the Validation into an non empty list of failures
         /// </summary>
         /// <returns></returns>
-        public Validation<NonEmptySList<T>, Tuple<U>> Lift() {
-            return Fold<Validation<NonEmptySList<T>, Tuple<U>>>(
-                fail => new NonEmptySList<T>(fail).ToFailure(), 
-                success => Tuple.Create(success).ToSuccess());
+        public Validation<ISemiJoin<NonEmptySList<T>>, U> LiftFailNel() {
+            return ProjectFailure().Map(x => (ISemiJoin<NonEmptySList<T>>)new NonEmptySList<T>(x));
+        }
+
+        /// <summary>
+        /// Implements an applicative for Validation&lt;T,U&gt;
+        /// </summary>
+        /// <typeparam name="TSuccess"></typeparam>
+        /// <param name="applicative"></param>
+        /// <param name="failApplicative"></param>
+        /// <returns></returns>
+        public Validation<T, TSuccess> Applicative<TSuccess>(Validation<T, Func<U,TSuccess>> applicative, Func<T,T,T> failApplicative) {
+            var matcher = new PatternMatcher<Validation<T, U>, Validation<T, TSuccess>> {
+                {Success.unapply, success => applicative.Fold<Validation<T, TSuccess>>(
+                    fail => fail.ToFailure(), 
+                    successFunc => successFunc(success).ToSuccess())},
+
+                {Failure.unapply, fail1 => applicative.Fold<Validation<T, TSuccess>>(
+                    fail2 => failApplicative(fail1, fail2).ToFailure(),
+                    successFunc => fail1.ToFailure())}
+            };
+            return matcher.Get(this).Get();
         }
     }
 
@@ -186,113 +202,22 @@ namespace Scalesque {
         public static Success<T> ToSuccess<T>(this T value) {
             return Success(value);
         }
-        
-        /// <summary>
-        /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
-        /// </summary>
-        /// <remarks>Failures are accumulated in a <see cref="NonEmptySList{T}"/>.  Success instances are accumulated in a Tuple</remarks>
-        /// <returns>Validation&lt;NonEmptySList&lt;T&gt;, Tuple&lt;U, Y&gt;&gt;</returns>
-        public static Validation<NonEmptySList<T>, Tuple<U, Y>> Combine<T, U, Y>(this Validation<NonEmptySList<T>, Tuple<U>> first, Validation<NonEmptySList<T>, Tuple<Y>> other) {
-            if (first.IsFailure || other.IsFailure) {
-                IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.SelectMany(x => x);
-                return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
-            }
-            return Tuple.Create(first.ProjectSuccess().Get().Item1, other.ProjectSuccess().Get().Item1).ToSuccess();
-        }
-
-        
 
         /// <summary>
-        /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
+        /// Flattens an Validation&lt;T,Validation&lt;T,U&gt;&gt; through the success side to an Validation&lt;T,U&gt;
         /// </summary>
-        /// <remarks>Failures are accumulated in a <see cref="NonEmptySList{T}"/>.  Success instances are accumulated in a Tuple</remarks>
-        /// <returns>Validation&lt;NonEmptySList&lt;T&gt;, Tuple&lt;U, Y&gt;&gt;</returns>
-        public static Validation<NonEmptySList<T>, Tuple<U, Y, A>> Combine<T, U, Y, A>(this Validation<NonEmptySList<T>, Tuple<U,Y>> first, Validation<NonEmptySList<T>, Tuple<A>> other) {
-            if (first.IsFailure || other.IsFailure) {
-                IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
-                return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
-            }
-            var firstSuccess = first.ProjectSuccess().Get();
-            return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, other.ProjectSuccess().Get().Item1).ToSuccess();
+        /// <returns>Validation&lt;T,U&gt</returns>
+        public static Validation<T, U> JoinSuccess<T, U>(this Validation<T, Validation<T, U>> validation) {
+            return validation.ProjectSuccess().FlatMap(x => x);
         }
 
-        /// <summary>
-        /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
-        /// </summary>
-        /// <remarks>Failures are accumulated in a <see cref="NonEmptySList{T}"/>.  Success instances are accumulated in a Tuple</remarks>
-        /// <returns>Validation&lt;NonEmptySList&lt;T&gt;, Tuple&lt;U, Y&gt;&gt;</returns>
-        public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B>> Combine<T, U, Y, A, B>(this Validation<NonEmptySList<T>, Tuple<U, Y, A>> first, Validation<NonEmptySList<T>, Tuple<B>> other) {
-            if (first.IsFailure || other.IsFailure) {
-                IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
-                return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
-            }
-            var firstSuccess = first.ProjectSuccess().Get();
-            return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, firstSuccess.Item3, other.ProjectSuccess().Get().Item1).ToSuccess();
-        }
 
         /// <summary>
-        /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
+        /// Flattens an Validation&lt;T,Validation&lt;T,U&gt;&gt; through the failure side to an Validation&lt;T,U&gt;
         /// </summary>
-        /// <remarks>Failures are accumulated in a <see cref="NonEmptySList{T}"/>.  Success instances are accumulated in a Tuple</remarks>
-        /// <returns>Validation&lt;NonEmptySList&lt;T&gt;, Tuple&lt;U, Y&gt;&gt;</returns>
-        public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C>> Combine<T, U, Y, A, B, C>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B>> first, Validation<NonEmptySList<T>, Tuple<C>> other) {
-            if (first.IsFailure || other.IsFailure) {
-                IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
-                return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
-            }
-            var firstSuccess = first.ProjectSuccess().Get();
-            return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, firstSuccess.Item3, firstSuccess.Item4, other.ProjectSuccess().Get().Item1).ToSuccess();
+        /// <returns>Validation&lt;T,U&gt</returns>
+        public static Validation<T, U> JoinFailure<T, U>(this Validation<Validation<T, U>, U> validation) {
+            return validation.ProjectFailure().FlatMap(x => x);
         }
-
-        /// <summary>
-        /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
-        /// </summary>
-        /// <remarks>Failures are accumulated in a <see cref="NonEmptySList{T}"/>.  Success instances are accumulated in a Tuple</remarks>
-        /// <returns>Validation&lt;NonEmptySList&lt;T&gt;, Tuple&lt;U, Y&gt;&gt;</returns>
-        public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D>> Combine<T, U, Y, A, B, C, D>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C>> first, Validation<NonEmptySList<T>, Tuple<D>> other) {
-            if (first.IsFailure || other.IsFailure) {
-                IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
-                return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
-            }
-            var firstSuccess = first.ProjectSuccess().Get();
-            return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, firstSuccess.Item3, firstSuccess.Item4, firstSuccess.Item5, other.ProjectSuccess().Get().Item1).ToSuccess();
-        }
-
-        /// <summary>
-        /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
-        /// </summary>
-        /// <remarks>Failures are accumulated in a <see cref="NonEmptySList{T}"/>.  Success instances are accumulated in a Tuple</remarks>
-        /// <returns>Validation&lt;NonEmptySList&lt;T&gt;, Tuple&lt;U, Y&gt;&gt;</returns>
-        public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D, E>> Combine<T, U, Y, A, B, C, D, E>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D>> first, Validation<NonEmptySList<T>, Tuple<E>> other) {
-            if (first.IsFailure || other.IsFailure) {
-                IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
-                return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
-            }
-            var firstSuccess = first.ProjectSuccess().Get();
-            return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, firstSuccess.Item3, firstSuccess.Item4, firstSuccess.Item5, firstSuccess.Item6, other.ProjectSuccess().Get().Item1).ToSuccess();
-        }
-
-        /// <summary>
-        /// Combines two Validation instances to form a single validation.  If either Validation is a Failure, the result is also a Failure.
-        /// </summary>
-        /// <remarks>Failures are accumulated in a <see cref="NonEmptySList{T}"/>.  Success instances are accumulated in a Tuple</remarks>
-        /// <returns>Validation&lt;NonEmptySList&lt;T&gt;, Tuple&lt;U, Y&gt;&gt;</returns>
-        public static Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D, E, Tuple<F>>> Combine<T, U, Y, A, B, C, D, E, F>(this Validation<NonEmptySList<T>, Tuple<U, Y, A, B, C, D, E>> first, Validation<NonEmptySList<T>, Tuple<F>> other) {
-            if (first.IsFailure || other.IsFailure) {
-                IEnumerable<NonEmptySList<T>> listOfLists = first.ProjectFailure().Concat(other.ProjectFailure());
-                IEnumerable<T> flattened = listOfLists.SelectMany(x=>x);
-                return SList.apply(flattened).ToNonEmptyList().Get().ToFailure();
-            }
-            var firstSuccess = first.ProjectSuccess().Get();
-            F otherItem = other.ProjectSuccess().Get().Item1;
-            return Tuple.Create(firstSuccess.Item1, firstSuccess.Item2, firstSuccess.Item3, firstSuccess.Item4, firstSuccess.Item5, firstSuccess.Item6, firstSuccess.Item7, otherItem).ToSuccess();
-        }
-      
     }
 }

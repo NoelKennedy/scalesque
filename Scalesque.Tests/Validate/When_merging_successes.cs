@@ -18,9 +18,9 @@ namespace Scalesque.Validate
         }
 
         public override void Because() {
-            var a = check1.Lift();
-            var b = check2.Lift();
-            mergedChecks = a.Combine(b);
+            var a = check1.LiftFailNel();
+            var b = check2.LiftFailNel();
+            mergedChecks = a.ApplicativeFunctor(b, Tuple.Create);
         }
 
         [Test]

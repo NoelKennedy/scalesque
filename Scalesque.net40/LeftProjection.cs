@@ -30,7 +30,7 @@ namespace Scalesque {
         /// </summary>
         /// <returns>Some&lt;T,U&gt; if Left, else None&lt;T,U&gt;</returns>
         public Option<T> ToOption() {
-            return either.Fold(left => Option.Some(left), right => Option.None());
+            return either.Fold(Option.Some, right => Option.None());
         }
 
         /// <summary>

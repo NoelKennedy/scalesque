@@ -27,7 +27,7 @@ namespace Scalesque.Collections {
             return GetEnumerator();
         }
 
-        public static SList<T> operator +(SList<T> tail, T head) {
+        public static NonEmptySList<T> operator +(SList<T> tail, T head) {
             return new NonEmptySList<T>(head, tail);
         }
         /// <summary>
@@ -35,13 +35,19 @@ namespace Scalesque.Collections {
         /// </summary>
         /// <param name="newHead"></param>
         /// <returns>A new instance of SList&lt;T&gt;</returns>
-        public SList<T> Prepend(T newHead) {
+        public NonEmptySList<T> Prepend(T newHead) {
             return this + newHead;
         }
 
         public Option<NonEmptySList<T>> ToNonEmptyList() {
             return HeadAndTail.unapply(this);
         }
+
+        public static implicit operator SList<T>(Nil nil) {
+            return Nil<T>.Instance;
+        } 
+
+       
     }
 
     /// <summary>
@@ -58,7 +64,7 @@ namespace Scalesque.Collections {
     /// An immutable linked list guaranteed to not be empty.  Terminates in <see cref="Nil{T}"/>.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class NonEmptySList<T> : SList<T>, IEnumerable<T> {
+    public class NonEmptySList<T> : SList<T>, ISemiJoin<NonEmptySList<T>> {
         private readonly T value;
         private readonly SList<T> next;
         private readonly int length;
@@ -84,6 +90,37 @@ namespace Scalesque.Collections {
         }
 
         public override int Length { get { return length; } }
+
+        /// <summary>
+        /// Prepends the other to this until the other SList is Nil
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>NonEmptySList&lt;T&gt;</returns>
+        private NonEmptySList<T> prependWith(SList<T> other) {
+            //i think this construct will allow tail call optimisation in .net 4.0
+            //http://stackoverflow.com/questions/491376/why-doesnt-net-c-optimize-for-tail-call-recursion
+            return other.Length == 0 ? this : Prepend(other.Head).prependWith(other.Tail);
+        }
+
+        /// <summary>
+        /// Used for semi joins
+        /// </summary>
+        NonEmptySList<T> ISemiJoin<NonEmptySList<T>>.Value {
+            get { return this; }
+        }
+
+        /// <summary>
+        /// Joins this SList&lt;T&gt; to another SList&lt;T&gt;
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>NonEmptySList&lt;T&gt; a unified list contain T from both lists</returns>
+        public NonEmptySList<T> Join(ISemiJoin<NonEmptySList<T>> other) {
+            return Prepend(other.Value.Head).prependWith(other.Value.Tail);
+        }
+
+        public ISemiJoin<NonEmptySList<T>> SemiJoin(ISemiJoin<NonEmptySList<T>> other) {
+            return Join(other);
+        }
     }
 
 
@@ -129,6 +166,10 @@ namespace Scalesque.Collections {
         public static SList<T> operator +(T head, Nil<T> tail) {
             return new NonEmptySList<T>(head, tail);
         }
+
+        public static implicit operator Nil<T>(Nil nil) {
+            return Instance;
+        } 
     }
 
     internal class SListEnumerator<T> : IEnumerator<T> {
@@ -183,6 +224,34 @@ namespace Scalesque.Collections {
 
         public static SList<T> apply<T>(IEnumerable<T> enumerable) {
             return apply(enumerable.ToArray());
+        }
+
+        /// <summary>
+        /// Prepens the value to an SList
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static NonEmptySList<T> cons<T>(this T value, SList<T> list) {
+            return list.Prepend(value);
+        }
+    }
+
+    public class Nil
+    {
+        public static Nil apply() {
+            return new Nil();
+        }
+     
+        /// <summary>
+        /// An extractor for null
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static bool unapply<T>(SList<T> list) {
+            return list.ToNonEmptyList().IsEmpty;
         }
     }
 }

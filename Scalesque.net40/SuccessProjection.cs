@@ -30,7 +30,7 @@ namespace Scalesque {
         /// </summary>
         /// <returns>Some&lt;U,U&gt; if Success, else None&lt;U,U&gt;</returns>
         public Option<U> ToOption() {
-            return validation.Fold(failure => Option.None(), success => Option.Some(success));
+            return validation.Fold(failure => Option.None(), Option.Some);
         }
 
         /// <summary>
