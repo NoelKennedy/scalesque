@@ -2,16 +2,16 @@
 <package >
   <metadata>
     <id>Scalesque</id>
-    <version>0.7.1</version>
+    <version>0.7.3</version>
     <authors>Noel Kennedy</authors>
     <owners>Noel Kennedy</owners>
     <licenseUrl>https://github.com/NoelKennedy/scalesque/blob/master/License.txt</licenseUrl>
     <projectUrl>https://github.com/NoelKennedy/scalesque</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A micro library for coding in a functional style using c# inspired by the Scala programming language</description>
-	<summary>Scalesque is inspired by the JVM language Scala and I wrote it to make it easier for me to switch between c# and Scala.  Currently implemented features are Option&lt;T&gt;, Either&lt;T,U&gt;, pattern matching with function based extractors, scalaz inspired Validation&lt;T,U&gt; and various collection methods like fold and reduce.</summary>
-    <releaseNotes>Semi-stable beta release</releaseNotes>
+	<summary>Semi stable beta.  Features Option&lt;T&gt;, Either&lt;T,U&gt;, pattern matching with exatractors, partially applied functions, scalaz inspired Validation&lt;T,U&gt; and various collection methods like fold and reduce.</summary>
+    <releaseNotes>Added partially applied functions</releaseNotes>
     <copyright>Copyright 2012</copyright>
-    <tags>functional-programming scala haskell lisp ml validation monad</tags>
+    <tags>functional-programming scala haskell lisp ml validation monad functional</tags>
   </metadata>
 </package>
