@@ -6,15 +6,25 @@ using System.Linq;
 namespace Scalesque {
 
     /// <summary>
-    /// Represents an optional value.  Is either a <see cref="Some{T}"/> or a <see cref="None{T}"/> representing value present or missing respectively.
+    /// Represents an optional value.  Is either a <see cref="Some&lt;T&gt;"/> or a <see cref="None&lt;T&gt;"/> representing value present or missing respectively.
     /// </summary>
     /// <typeparam name="T">&lt;T&gt; The type of the optional value</typeparam>
     public abstract partial class Option<T> : IEnumerable<T> {
         
+        /// <summary>
+        /// Gets if the optional value is missing
+        /// </summary>
         public abstract bool IsEmpty { get; }
         
+        /// <summary>
+        /// Gets if the optional value is present
+        /// </summary>
         public bool HasValue { get { return !IsEmpty; } }
 
+        /// <summary>
+        /// Gets the optional value if it is there or throws exception
+        /// </summary>
+        /// <returns>T</returns>
         public abstract T Get();
         
         /// <summary>
@@ -64,7 +74,7 @@ namespace Scalesque {
         }
 
         /// <summary>
-        /// Returns result of ifEmpty if is <see cref="None{T}"/> or passes value to f and returns result
+        /// Returns result of ifEmpty if is <see cref="None&lt;T&gt;"/> or passes value to f and returns result
         /// </summary>
         /// <typeparam name="Y"></typeparam>
         /// <param name="ifEmpty"></param>
@@ -74,6 +84,26 @@ namespace Scalesque {
             if (IsEmpty)
                 return ifEmpty();
             return f(Get());
+        }
+
+        public Option<Tuple<T,U>> Merge<U>(Option<U> other) {
+            return FlatMap(a => other.Map(b => Tuple.Create(a, b)));
+        }
+
+        public static Option<B> Applicative<A,B>(Option<Func<A,B>> f, Option<A> a) {
+            return f.FlatMap(a.Map);
+        }
+
+        public Option<TResult> Merge<U, X, TResult>(Option<U> other1, Option<X> other2, Func<T,U,X, TResult> f) {
+            Func<T, Func<U, Func<X, TResult>>> curry = Curry(f);
+
+            var mbCurry = Map(curry);
+            return Applicative(Applicative(mbCurry, other1), other2);
+
+        }
+
+        private Func<T, Func<U, Func<X, TResult>>> Curry<U, X, TResult>(Func<T, U, X, TResult> f) {
+            return t => u => x => f(t, u, x);
         }
 
         public IEnumerator<T> GetEnumerator() {
