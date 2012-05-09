@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Scalesque</id>
-    <version>0.7.3</version>
+    <version>0.7.4</version>
     <authors>Noel Kennedy</authors>
     <owners>Noel Kennedy</owners>
     <licenseUrl>https://github.com/NoelKennedy/scalesque/blob/master/License.txt</licenseUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A micro library for coding in a functional style using c# inspired by the Scala programming language</description>
 	<summary>Semi stable beta.  Features Option&lt;T&gt;, Either&lt;T,U&gt;, pattern matching with exatractors, partially applied functions, scalaz inspired Validation&lt;T,U&gt; and various collection methods like fold and reduce.</summary>
-    <releaseNotes>Added partially applied functions</releaseNotes>
+    <releaseNotes>Added functive applicators for Option and Validation (breaking change). Added If expression. Added partial function application. Added currying.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>functional-programming scala haskell lisp ml validation monad functional</tags>
   </metadata>
