@@ -50,6 +50,7 @@
     <Compile Include="EitherOr\When_extracting_either.cs" />
     <Compile Include="EitherOr\When_composing_with_either.cs" />
     <Compile Include="EitherOr\When_joining_either.cs" />
+    <Compile Include="ExceptionCatching\When_catching_exceptions.cs" />
     <Compile Include="FunctionApplication\When_creating_partially_applied_functions.cs" />
     <Compile Include="Options\When_using_applicative_functors.cs" />
     <Compile Include="Patterns\SomeExampleExtractors.cs" />

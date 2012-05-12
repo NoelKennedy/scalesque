@@ -47,9 +47,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicativeFunctorOther.tt</DependentUpon>
     </Compile>
+    <Compile Include="Catcher.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Collections\SList.cs" />
-    <Compile Include="Expressions.cs" />
     <Compile Include="ISemiJoin.cs" />
     <Compile Include="OptionApplicativeFunctor.cs" />
     <Compile Include="Validation.Extractors.cs" />

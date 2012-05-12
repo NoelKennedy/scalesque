@@ -45,6 +45,9 @@
     <Compile Include="..\Scalesque.net40\ApplicativeFunctorOther.cs">
       <Link>ApplicativeFunctorOther.cs</Link>
     </Compile>
+    <Compile Include="..\Scalesque.net40\Catcher.cs">
+      <Link>Catcher.cs</Link>
+    </Compile>
     <Compile Include="..\Scalesque.net40\CollectionExtensions.cs">
       <Link>CollectionExtensions.cs</Link>
     </Compile>
