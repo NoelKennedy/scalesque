@@ -38,19 +38,25 @@ namespace Scalesque {
                 return None<U>.apply();
             return new Some<U>(f(Get()));
         }
-        //public X Map<U, X>(Func<T, U> f) where X : Functor<U> {
-            
-        //}
 
         /// <summary>
-        /// Gets the value if it exists, else a default value
+        /// Gets the value if it exists, else a default value.  Lazy evaulation of default value. 
         /// </summary>
-        /// <param name="f"></param>
-        /// <returns></returns>
+        /// <param name="f">Func&ltT&gt; Allows lazy evaluation. f will only be evaluated if the Option is None</param>
+        /// <returns>T</returns>
         public T GetOrElse(Func<T> f) {
             if (IsEmpty)
                 return f();
             return Get();
+        }
+
+        /// <summary>
+        /// Gets the value if it exists, else a default value.  No lazy evaluation of default value.
+        /// </summary>
+        /// <param name="default">T the default value.  This is evaluated regardless of whether it is used or not</param>
+        /// <returns>T</returns>
+        public T GetOrElse(T @default) {
+            return IsEmpty ? @default : Get();
         }
 
         /// <summary>
@@ -66,7 +72,7 @@ namespace Scalesque {
         }
 
         /// <summary>
-        /// Opposite of flatMap.  Keeps the value if this is Some{T}, else returns the Option{T} of the function.
+        /// Opposite of flatMap.  Keeps the value if this is Some&lt;T&gt;, else returns the Option&lt;T&gt; of the function.
         /// </summary>
         /// <param name="f"></param>
         /// <returns></returns>
@@ -89,8 +95,14 @@ namespace Scalesque {
             return f(Get());
         }
 
+        /// <summary>
+        /// Implements applicative functor for Option&lt;T&gt;
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="tf">Func&ltT,U&gt; tf a function inside the 'context' of an Option which to be applied to this Option</param>
+        /// <returns>Option&lt;U&gt; Some&lt;U&gt; if both original Options are Some, else None&lt;U&gt;</returns>
         public Option<U> Applicative<U>(Option<Func<T,U>> tf) {
-            return tf.FlatMap(this.Map);
+            return tf.FlatMap(Map);
         }
 
         public IEnumerator<T> GetEnumerator() {
