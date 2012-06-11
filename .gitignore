@@ -11,3 +11,4 @@ _ReSharper*.*
 *.scc
 *.vssscc
 *.vspscc
+*.nupkg
