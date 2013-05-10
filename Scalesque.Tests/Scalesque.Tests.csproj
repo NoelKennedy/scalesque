@@ -47,6 +47,7 @@
     <Compile Include="Collections\When_constructing_instances_in_different_ways_SList.cs" />
     <Compile Include="Collections\When_using_nel_as_semi_join.cs" />
     <Compile Include="Collections\When_working_with_Nil.cs" />
+    <Compile Include="Dictionary\When_getting_items_from_dictionary.cs" />
     <Compile Include="EitherOr\When_extracting_either.cs" />
     <Compile Include="EitherOr\When_composing_with_either.cs" />
     <Compile Include="EitherOr\When_joining_either.cs" />

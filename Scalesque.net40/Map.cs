@@ -17,9 +17,10 @@ namespace Scalesque {
         /// <param name="key"></param>
         /// <returns></returns>
         public static Option<U> Get<T,U>(this IDictionary<T,U> dict, T key) {
-            U value;
-            dict.TryGetValue(key, out value);
-            return Option.apply(value);
+            if (dict.ContainsKey(key))
+                return Option.Some(dict[key]);
+            else
+                return Option.None();
         }
 
         /// <summary>
