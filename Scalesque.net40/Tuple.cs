@@ -45,6 +45,18 @@
         public Tuple(T1 item1) {
             Item1 = item1;
         }
+
+        public override bool Equals(object obj) {
+            var other = obj as Tuple<T1>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1);
+            return false;
+        }
+
+        public override string ToString(){
+            return "({0})".format(Item1);
+        }
     }
 
     public sealed class Tuple<T1, T2> {
@@ -54,6 +66,20 @@
         public Tuple(T1 item1, T2 item2) {
             Item1 = item1;
             Item2 = item2;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Tuple<T1,T2>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1) && Item2.Equals(other.Item2);
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return "({0}, {1})".format(Item1, Item2);
         }
     }
 
@@ -66,6 +92,14 @@
             Item1 = item1;
             Item2 = item2;
             Item3 = item3;
+        }
+
+        public override bool Equals(object obj) {
+            var other = obj as Tuple<T1,T2,T3>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3);
+            return false;
         }
     }
 
@@ -80,6 +114,15 @@
             Item2 = item2;
             Item3 = item3;
             Item4 = item4;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Tuple<T1,T2,T3,T4>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4);
+            return false;
         }
     }
 
@@ -96,6 +139,15 @@
             Item3 = item3;
             Item4 = item4;
             Item5 = item5;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Tuple<T1, T2, T3, T4, T5>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4) && Item5.Equals(other.Item5);
+            return false;
         }
     }
 
@@ -114,6 +166,15 @@
             Item4 = item4;
             Item5 = item5;
             Item6 = item6;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Tuple<T1, T2, T3, T4, T5, T6>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4) && Item5.Equals(other.Item5) && Item6.Equals(other.Item6);;
+            return false;
         }
     }
 
@@ -134,6 +195,15 @@
             Item5 = item5;
             Item6 = item6;
             Item7 = item7;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Tuple<T1, T2, T3, T4, T5, T6, T7>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4) && Item5.Equals(other.Item5) && Item6.Equals(other.Item6) && Item7.Equals(other.Item7);
+            return false;
         }
     }
 
@@ -156,6 +226,15 @@
             Item6 = item6;
             Item7 = item7;
             Item8 = item8;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Tuple<T1, T2, T3, T4, T5, T6, T7, T8>;
+
+            if (other != null)
+                return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4) && Item5.Equals(other.Item5) && Item6.Equals(other.Item6) && Item7.Equals(other.Item7) && Item8.Equals(other.Item8);
+            return false;
         }
     }
 
