@@ -101,6 +101,11 @@
                 return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3);
             return false;
         }
+
+        public override string ToString()
+        {
+            return "({0}, {1}, {2})".format(Item1, Item2, Item3);
+        }
     }
 
     public sealed class Tuple<T1, T2, T3, T4> {
@@ -124,6 +129,11 @@
                 return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4);
             return false;
         }
+
+        public override string ToString()
+        {
+            return "({0}, {1}, {2}, {3})".format(Item1, Item2, Item3, Item4);
+        }
     }
 
     public sealed class Tuple<T1, T2, T3, T4, T5> {
@@ -139,6 +149,11 @@
             Item3 = item3;
             Item4 = item4;
             Item5 = item5;
+        }
+
+        public override string ToString()
+        {
+            return "({0}, {1}, {2}, {3}, {4})".format(Item1, Item2, Item3, Item4, Item5);
         }
 
         public override bool Equals(object obj)
@@ -176,6 +191,11 @@
                 return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4) && Item5.Equals(other.Item5) && Item6.Equals(other.Item6);;
             return false;
         }
+
+        public override string ToString()
+        {
+            return "({0}, {1}, {2}, {3}, {4}, {5})".format(Item1, Item2, Item3, Item4, Item5, Item6);
+        }
     }
 
     public sealed class Tuple<T1, T2, T3, T4, T5, T6, T7> {
@@ -204,6 +224,11 @@
             if (other != null)
                 return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4) && Item5.Equals(other.Item5) && Item6.Equals(other.Item6) && Item7.Equals(other.Item7);
             return false;
+        }
+
+        public override string ToString()
+        {
+            return "({0}, {1}, {2}, {3}, {4}, {5}, {6})".format(Item1, Item2, Item3, Item4, Item5, Item6);
         }
     }
 
@@ -235,6 +260,11 @@
             if (other != null)
                 return Item1.Equals(other.Item1) && Item2.Equals(other.Item2) && Item3.Equals(other.Item3) && Item4.Equals(other.Item4) && Item5.Equals(other.Item5) && Item6.Equals(other.Item6) && Item7.Equals(other.Item7) && Item8.Equals(other.Item8);
             return false;
+        }
+
+        public override string ToString()
+        {
+            return "({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})".format(Item1, Item2, Item3, Item4, Item5, Item6, Item8);
         }
     }
 
