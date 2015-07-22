@@ -25,32 +25,32 @@ namespace Scalesque.Options
 
         [Test]
         public void It_should_equal_itself() {
-            option1.Should().Equal(option1);
+            option1.Equals(option1).Should().BeTrue();
         }
 
         [Test]
         public void It_should_be_equal_to_another_instance_with_the_same_value() {
-            option1.Should().Equal(option2);
+            option1.Equals(option2).Should().BeTrue();
         }
 
         [Test]
         public void It_should_not_be_equal_to_a_some_of_the_same_type_but_a_different_value() {
-            option1.Should().NotEqual(option6);
+            option1.Equals(option6).Should().BeFalse();
         }
 
         [Test]
         public void It_should_not_be_equal_to_a_none_of_the_same_type() {
-            option1.Should().NotEqual(option3);
+            option1.Equals(option3).Should().BeFalse();
         }
 
         [Test]
         public void It_should_not_be_equal_to_a_none_of_a_different_type() {
-            option1.Should().NotEqual(option4);
+            option1.Equals(option4).Should().BeFalse();
         }
 
         [Test]
         public void It_should_not_be_equal_to_a_some_of_a_different_type() {
-            option1.Should().NotEqual(option5);
+            option1.Equals(option5).Should().BeFalse();
         }
     }
 }

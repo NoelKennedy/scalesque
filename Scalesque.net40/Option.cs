@@ -116,9 +116,20 @@ namespace Scalesque {
         }
 
         public override bool Equals(object obj) {
-            Option<T> other = (obj as Option<T>).Opt().Flatten();
-            Option<Func<T,bool>> applicative = Map<Func<T, bool>>(value => (otherValue) => value.Equals(otherValue));
-            return other.Applicative(applicative).GetOrElse(false);
+            Option<Option<T>> other = (obj as Option<T>).Opt();
+            return other.Fold(
+                //cast failed, obj is not the same type as this
+                () => false
+                , 
+                //this comparison is slightly awkward without pattern matching
+                (Option<T> otherOption) => {
+                    //nones of the same type are considered equal
+                    if (this.IsEmpty && otherOption.IsEmpty)
+                        return true;
+                    return FlatMap(thisValue => otherOption.Map(otherValue => thisValue.Equals(otherValue))) //compare the equality of inner values
+                        .GetOrElse(false);
+
+                });
         }
 
         public override int GetHashCode() {

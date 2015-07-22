@@ -23,17 +23,17 @@ namespace Scalesque.Options
 
         [Test]
         public void It_should_equal_itself() {
-            option1.Should().Equal(option1);
+            option1.Equals(option1).Should().BeTrue();
         }
 
         [Test]
         public void It_should_be_equal_to_another_none() {
-            option1.Should().Equal(option2);
+            option1.Equals(option2).Should().BeTrue();
         }
 
         [Test]
         public void It_should_not_be_equal_to_a_some_of_the_same_type() {
-            option1.Should().NotEqual(option3);
+            option1.Equals(option3).Should().BeFalse();
         }
 
         [Test]
@@ -43,7 +43,13 @@ namespace Scalesque.Options
 
         [Test]
         public void It_should_not_be_equal_to_a_some_of_a_different_type() {
-            option1.Should().NotEqual(option5);
+            option1.Equals(option5).Should().BeFalse();
+        }
+
+        [Test]
+        public void It_should_not_be_equal_to_a_some_of_a_different_typexx() {
+            bool? nullableValueType = null;
+            Option.apply(nullableValueType).Should().Equal(Option.apply(nullableValueType));
         }
     }
 }
