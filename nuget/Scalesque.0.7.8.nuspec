@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Scalesque</id>
+        <version>0.7.8</version>
+        <authors>Noel Kennedy</authors>
+        <owners>Noel Kennedy</owners>
+        <licenseUrl>https://github.com/NoelKennedy/scalesque/blob/master/License.txt</licenseUrl>
+        <projectUrl>https://github.com/NoelKennedy/scalesque</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A micro library for coding in a functional style using c#.  Features Option&lt;T&gt;, Either&lt;T,U&gt;, pattern matching with exatractors, partially applied functions, scalaz inspired Validation&lt;T,U&gt; and various collection methods like fold and reduce.</description>
+        <summary>A micro library for coding in a functional style using c# inspired by the Scala programming language</summary>
+        <releaseNotes>Added exception wrapper.  Added non-lazy GetOrElse for Option.  Dropped if expressions as this was a bad idea (breaking change), replace with ternary expression.</releaseNotes>
+        <copyright>Copyright 2015</copyright>
+        <tags>functional-programming scala haskell lisp ml validation monad functional</tags>
+    </metadata>
+    <files>
+        <file src="..\lib\net35\Scalesque.net35.dll" target="lib\net35\Scalesque.net35.dll" />
+        <file src="..\lib\net35\Scalesque.net35.pdb" target="lib\net35\Scalesque.net35.pdb" />
+        <file src="..\lib\net35\Scalesque.net35.XML" target="lib\net35\Scalesque.net35.XML" />
+        <file src="..\lib\net40\Scalesque.net40.dll" target="lib\net40\Scalesque.net40.dll" />
+        <file src="..\lib\net40\Scalesque.net40.pdb" target="lib\net40\Scalesque.net40.pdb" />
+        <file src="..\lib\net40\Scalesque.net40.XML" target="lib\net40\Scalesque.net40.XML" />
+    </files>
+</package>
