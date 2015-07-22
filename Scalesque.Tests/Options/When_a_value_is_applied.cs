@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using FluentAssertions;
+using FluentAssertions.EventMonitoring;
 using NUnit.Framework;
 
 namespace Scalesque.Options {
-
     [TestFixture]
     public class When_a_value_is_applied : UnitTestBase {
 

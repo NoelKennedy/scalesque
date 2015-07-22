@@ -102,7 +102,7 @@ namespace Scalesque {
         /// <param name="tf">Func&ltT,U&gt; tf a function inside the 'context' of an Option which to be applied to this Option</param>
         /// <returns>Option&lt;U&gt; Some&lt;U&gt; if both original Options are Some, else None&lt;U&gt;</returns>
         public Option<U> Applicative<U>(Option<Func<T,U>> tf) {
-            return tf.FlatMap(Map);
+            return tf.FlatMap<U>(Map);
         }
 
         public IEnumerator<T> GetEnumerator() {
@@ -113,6 +113,16 @@ namespace Scalesque {
 
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
+        }
+
+        public override bool Equals(object obj) {
+            Option<T> other = (obj as Option<T>).Opt().Flatten();
+            Option<Func<T,bool>> applicative = Map<Func<T, bool>>(value => (otherValue) => value.Equals(otherValue));
+            return other.Applicative(applicative).GetOrElse(false);
+        }
+
+        public override int GetHashCode() {
+            return Map(_ => _.GetHashCode()).GetOrElse(base.GetHashCode());
         }
     }
 
@@ -199,6 +209,15 @@ namespace Scalesque {
         /// <returns></returns>
         public static IEnumerable<T> Flatten<T>(this IEnumerable<Option<T>> enumerable) {
             return from option in enumerable where option.HasValue select option.Get();
+        }
+
+        /// <summary>
+        /// Flattens an Option&lt;Option&lt;T&gt;&gt; to a Option&lt;T&gt;
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static Option<T> Flatten<T>(this Option<Option<T>> option) {
+            return option.FlatMap(_ => _);
         }
 
         /// <summary>
