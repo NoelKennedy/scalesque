@@ -47,6 +47,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicativeFunctorOther.tt</DependentUpon>
     </Compile>
+    <Compile Include="Caster.cs" />
     <Compile Include="Catcher.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Collections\SList.cs" />
