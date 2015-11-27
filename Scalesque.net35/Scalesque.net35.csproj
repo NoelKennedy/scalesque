@@ -54,6 +54,9 @@
     <Compile Include="..\Scalesque.net40\Collections\SList.cs">
       <Link>Collections\SList.cs</Link>
     </Compile>
+    <Compile Include="..\Scalesque.net40\DictionaryExtensions.cs">
+      <Link>DictionaryExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Scalesque.net40\Either.cs">
       <Link>Either.cs</Link>
     </Compile>
@@ -74,9 +77,6 @@
     </Compile>
     <Compile Include="..\Scalesque.net40\LeftProjection.cs">
       <Link>LeftProjection.cs</Link>
-    </Compile>
-    <Compile Include="..\Scalesque.net40\Map.cs">
-      <Link>Map.cs</Link>
     </Compile>
     <Compile Include="..\Scalesque.net40\Option.cs">
       <Link>Option.cs</Link>

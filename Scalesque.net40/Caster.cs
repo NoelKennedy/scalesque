@@ -7,6 +7,29 @@ namespace Scalesque
     /// </summary>
     public static class Caster
     {
+
+        /// <summary>
+        /// Converts an optional value type to the .net nullable type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public static T? ToNullableValueType<T>(this Option<T> option) where T : struct
+        {
+            return option.HasValue ? option.Get() : new T?();
+        }
+
+        /// <summary>
+        /// Converts an optional class type to a .net nullable reference
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public static T ToNullable<T>(this Option<T> option) where T : class
+        {
+            return option.HasValue ? option.Get() : null;
+        }
+
         /// <summary>
         ///     Casts an object reference to another type and wraps the result in Option
         /// </summary>
@@ -57,7 +80,7 @@ namespace Scalesque
         }
 
         /// <summary>
-        /// Converts a nullable value type to an Option type
+        /// Converts an Option&lt;T&gt; from a nullable value type
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>

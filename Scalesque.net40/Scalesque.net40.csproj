@@ -61,7 +61,7 @@
     <Compile Include="FailureProjection.cs" />
     <Compile Include="General.cs" />
     <Compile Include="LeftProjection.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="Option.Extractors.cs" />
     <Compile Include="Option.implicits.cs" />

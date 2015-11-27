@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -53,7 +54,6 @@ namespace Scalesque {
         /// <returns></returns>
         public static IEnumerable<T> FlatMap<T, U>(this IEnumerable<U> source, Func<U, Option<T>> f) => source.Map(f).Flatten();
 
-
         /// <summary>
         /// Gets the head of a IEnumerable wrapped in an Option monad
         /// </summary>
@@ -106,7 +106,6 @@ namespace Scalesque {
         }
 #endif
 
-
         /// <summary>
         /// Performs a side effect on each member of a collection
         /// </summary>
@@ -116,6 +115,31 @@ namespace Scalesque {
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> f) {
             foreach (var item in enumerable)
                 f(item);
+        }
+
+        /// <summary>
+        /// Collects all objects of type U that exist in collection enumerable
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> Collect<T>(this IEnumerable enumerable) where T : class
+        {
+            return enumerable.OfType<T>().Select(original => original);
+        }
+
+        /// <summary>
+        ///     Prepends a T to an IEnumerable of T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> Prepend<T>(this IEnumerable<T> values, T value)
+        {
+            yield return value;
+            foreach (var item in values) yield return item;
         }
     }
 }
