@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- Version attribute controls the nuget package version.  The VS Project property 'package version' doesnt do anything.. -->
+    <Version>1.0.1</Version>
     <OutputType>Library</OutputType>
     <RootNamespace>Scalesque</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -12,9 +14,13 @@
     <RepositoryUrl>https://github.com/NoelKennedy/scalesque</RepositoryUrl>
     <PackageTags>functional-programming scala haskell lisp ml validation monad functional</PackageTags>
     <PackageReleaseNotes>Upgraded to .netstandard2.0</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageId>Scalesque</PackageId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;Covariant</DefineConstants>
+    <OutputPath>bin\Debug\netstandard2.0\</OutputPath>
+    <DocumentationFile>bin\Debug\netstandard2.0\Scalesque.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\lib\net40\</OutputPath>

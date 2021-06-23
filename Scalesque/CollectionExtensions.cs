@@ -83,5 +83,39 @@ namespace Scalesque {
             foreach (var item in enumerable)
                 f(item);
         }
+
+        /// <summary>
+        /// Maps source to Option T then flattens
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> FlatMap<T, U>(this IEnumerable<U> source, Func<U, Option<T>> f) => source.Map(f).Flatten();
+
+
+        /// <summary>
+        /// Gets the head of a IEnumerable wrapped in an Option monad
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static Option<T> HeadOption<T>(this IEnumerable<T> source)
+        {
+            IList<T> list = source as IList<T>;
+            if (list != null)
+            {
+                if (list.Count > 0) return list[0].ToSome();
+            }
+            else
+            {
+                using (IEnumerator<T> enumerator = source.GetEnumerator())
+                {
+                    if (enumerator.MoveNext()) return enumerator.Current.ToSome();
+                }
+            }
+            return Option.None();
+        }
     }
 }

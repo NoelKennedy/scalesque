@@ -97,6 +97,8 @@ namespace Scalesque {
         /// <param name="failApplicative"></param>
         /// <returns></returns>
         public Validation<T, TSuccess> Applicative<TSuccess>(Validation<T, Func<U,TSuccess>> applicative, Func<T,T,T> failApplicative) {
+
+
             var matcher = new PatternMatcher<Validation<T, U>, Validation<T, TSuccess>> {
                 {Success.unapply, success => applicative.Fold<Validation<T, TSuccess>>(
                     fail => fail.ToFailure(), 

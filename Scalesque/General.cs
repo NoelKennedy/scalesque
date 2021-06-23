@@ -3,7 +3,6 @@ using System.Diagnostics;
 
 namespace Scalesque {
     public static class General {
-
         /// <summary>
         /// Convenience method for String.Format.  The replacement markup is still .net's {0} style.
         /// </summary>
