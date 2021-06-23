@@ -5,6 +5,13 @@
     <RootNamespace>Scalesque</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyName>Scalesque</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Noel Kennedy</Authors>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/NoelKennedy/scalesque</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NoelKennedy/scalesque</RepositoryUrl>
+    <PackageTags>functional-programming scala haskell lisp ml validation monad functional</PackageTags>
+    <PackageReleaseNotes>Upgraded to .netstandard2.0</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;Covariant</DefineConstants>
@@ -43,6 +50,10 @@
     <None Update="PartialFunctionsGen.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PartialFunctionsGen.generated.cs</LastGenOutput>
+    </None>
+    <None Include="..\License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
   <ItemGroup>

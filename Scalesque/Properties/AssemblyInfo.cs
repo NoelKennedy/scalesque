@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Scalesque")]
-[assembly: AssemblyDescription("Functional programming library for c#")]
+[assembly: AssemblyDescription("A micro library for coding in a functional style using c#.  Features Option<T>, Either<T,U>, pattern matching with exatractors, partially applied functions, scalaz inspired Validation<T,U> and various collection methods like fold and reduce.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Scalaesque")]
-[assembly: AssemblyCopyright("Noel Kennedy Copyright ©  2015")]
+[assembly: AssemblyCopyright("Noel Kennedy Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.7.6")]
-[assembly: AssemblyFileVersion("0.0.7.6")]
+[assembly: AssemblyVersion("0.1.0.0")]
+[assembly: AssemblyFileVersion("0.1.0.0")]
