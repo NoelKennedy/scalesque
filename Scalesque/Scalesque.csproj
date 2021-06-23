@@ -1,21 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Copyright>� The Royal Veterinary College. All Rights Reserved 2017</Copyright>
+    <AssemblyTitle>Event Saucing</AssemblyTitle>
+    <VersionPrefix>1.0.2</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <!-- Version attribute controls the nuget package version.  The VS Project property 'package version' doesnt do anything.. -->
-    <Version>1.0.1</Version>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Scalesque</RootNamespace>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyName>Scalesque</AssemblyName>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Noel Kennedy</Authors>
-    <PackageLicenseFile>License.txt</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/NoelKennedy/scalesque</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/NoelKennedy/scalesque</RepositoryUrl>
-    <PackageTags>functional-programming scala haskell lisp ml validation monad functional</PackageTags>
-    <PackageReleaseNotes>Upgraded to .netstandard2.0</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <AssemblyName>EventSaucing</AssemblyName>
     <PackageId>Scalesque</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <Version>1.0.2</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/NoelKennedy/scalesque</PackageProjectUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/NoelKennedy/scalesque</RepositoryUrl>
+    <PackageReleaseNotes>Upgraded to .NetStandard 2.0</PackageReleaseNotes>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+    <Description>A micro library for coding in a functional style using c#.  Features Option&lt;T&gt;, Either&lt;T,U&gt;, pattern matching with exatractors, partially applied functions, scalaz inspired Validation&lt;T,U&gt; and various collection methods like fold and reduce.</Description>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <Authors>Scalesque</Authors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;Covariant</DefineConstants>
@@ -61,8 +66,15 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="..\License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
