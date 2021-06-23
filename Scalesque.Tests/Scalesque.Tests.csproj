@@ -1,90 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{13179235-B77A-4FD4-A7FE-2DC66529F4E0}</ProjectGuid>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Scalesque</RootNamespace>
-    <AssemblyName>Scalesque.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.1.7.1.1\Lib\net40\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="FluentAssertions" Version="4.19.4" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\When_constructing_instances_in_different_ways_SList.cs" />
-    <Compile Include="Collections\When_using_nel_as_semi_join.cs" />
-    <Compile Include="Collections\When_working_with_Nil.cs" />
-    <Compile Include="Dictionary\When_getting_items_from_dictionary.cs" />
-    <Compile Include="EitherOr\When_extracting_either.cs" />
-    <Compile Include="EitherOr\When_composing_with_either.cs" />
-    <Compile Include="EitherOr\When_joining_either.cs" />
-    <Compile Include="ExceptionCatching\When_catching_exceptions.cs" />
-    <Compile Include="FunctionApplication\When_creating_partially_applied_functions.cs" />
-    <Compile Include="Options\When_comparing_equality_of_none.cs" />
-    <Compile Include="Options\When_comparing_equality_of_some.cs" />
-    <Compile Include="Options\When_using_applicative_functors.cs" />
-    <Compile Include="Patterns\SomeExampleExtractors.cs" />
-    <Compile Include="Patterns\When_doing_more_complicated_extractions.cs" />
-    <Compile Include="Patterns\When_doing_simple_pattern_matching.cs" />
-    <Compile Include="Patterns\When_matching_literals.cs" />
-    <Compile Include="Patterns\When_pattern_matching_option.cs" />
-    <Compile Include="UnitTestBase.cs" />
-    <Compile Include="Options\When_applying_a_null.cs" />
-    <Compile Include="Options\When_a_value_is_applied.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validate\When_accumulating_failures.cs" />
-    <Compile Include="Validate\When_merging_successes.cs" />
-    <Compile Include="Validate\When_working_with_multiple_validations.cs" />
+    <ProjectReference Include="..\Scalesque\Scalesque.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Scalesque.net40\Scalesque.net40.csproj">
-      <Project>{5EA65B6D-6912-490B-9A24-D3D37C94C1BD}</Project>
-      <Name>Scalesque.net40</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

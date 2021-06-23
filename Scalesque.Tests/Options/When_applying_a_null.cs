@@ -20,9 +20,8 @@ namespace Scalesque.Options
         }
 
         [Test]
-        [ExpectedException(ExpectedException = typeof(ArgumentNullException))]
         public void It_should_throw_on_get() {
-            option.Get();
+            Assert.That(() => option.Get(), Throws.ArgumentNullException);
         }
 
         [Test]

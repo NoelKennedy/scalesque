@@ -5,7 +5,7 @@ namespace Scalesque
     [TestFixture]
     public abstract class UnitTestBase {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void PrepareFixture() {
             Given();
             Because();

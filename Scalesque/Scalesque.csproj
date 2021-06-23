@@ -1,28 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>net472;netstandard20</TargetFrameworks>
-    <Version>1.0.0</Version>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Scalesque</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>Scalesque</AssemblyName>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG;Covariant</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\lib\net40\</OutputPath>
+    <DefineConstants>TRACE;Covariant</DefineConstants>
+    <DocumentationFile>..\lib\net40\Scalesque.net40.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="ApplicativeFunctorOption.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicativeFunctorOption.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ApplicativeFunctorOther.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicativeFunctorOther.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PartialFunctionsGen.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartialFunctionsGen.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <None Update="ApplicativeFunctorOption.tt">
-      <LastGenOutput>ApplicativeFunctorOption.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApplicativeFunctorOption.cs</LastGenOutput>
     </None>
     <None Update="ApplicativeFunctorOther.tt">
-      <LastGenOutput>ApplicativeFunctorOther.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApplicativeFunctorOther.cs</LastGenOutput>
     </None>
     <None Update="PartialFunctionsGen.tt">
-      <LastGenOutput>PartialFunctionsGen.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PartialFunctionsGen.generated.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
   <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-
 </Project>
